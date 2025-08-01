@@ -1,0 +1,268 @@
+table 'public fetal_development_risk'
+	lineageTag: 96b03d31-6791-473a-90d6-d24c125a67dc
+
+	measure '% Substance_USE' =
+			DIVIDE(CALCULATE(COUNT('public fetal_development_risk'[case_id]),'public fetal_development_risk'[alcohol_use] = 1)
+			                  +CALCULATE(COUNT('public fetal_development_risk'[case_id]),'public fetal_development_risk'[tobacco_use] = 1)
+			                  +CALCULATE(COUNT('public fetal_development_risk'[case_id]),'public fetal_development_risk'[drugs_during_pregnancy] = 1),
+			            [Total cases]
+			            )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 2541e299-381f-4d97-97bd-f2f05efe8871
+
+	measure '% GDM' = DIVIDE([Current_GDM],[Total cases])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ad35c176-7f89-4eca-8be4-6ecf036aa039
+
+	measure '% Chronic_Diabetes_new' =
+			DIVIDE(CALCULATE(COUNT('public fetal_development_risk'[case_id]),'public fetal_development_risk'[chronic_diabetes] = 1),
+			            [Total cases]
+			            )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: bdc70d78-69b2-49d0-99c4-286edd2958de
+
+	measure Current_GDM =
+			CALCULATE(COUNTROWS('public fetal_development_risk'),
+			                'public fetal_development_risk'[gestational_diabetes_mellitus] = 1)
+		formatString: 0
+		lineageTag: 1437ac01-c208-4397-9c55-720dd54f9d60
+
+	column case_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 6aea2488-28aa-43bd-b33b-8ec0a557bfbe
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column tobacco_use
+		dataType: int64
+		formatString: 0
+		lineageTag: f8b5ba9d-d19c-4147-884a-c44e2adfcbf3
+		summarizeBy: sum
+		sourceColumn: tobacco_use
+
+		annotation SummarizationSetBy = Automatic
+
+	column tobacco_use_in_months
+		dataType: double
+		lineageTag: c027b598-5819-4503-81e5-a9263f4ee247
+		summarizeBy: sum
+		sourceColumn: tobacco_use_in_months
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tobacco_quantity_by_day
+		dataType: double
+		lineageTag: 8b320a3b-6974-469f-a6e1-0f2eb85a9efd
+		summarizeBy: sum
+		sourceColumn: tobacco_quantity_by_day
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column alcohol_use
+		dataType: int64
+		formatString: 0
+		lineageTag: b04646a5-d6f8-4dce-8daa-848335dcfe97
+		summarizeBy: sum
+		sourceColumn: alcohol_use
+
+		annotation SummarizationSetBy = Automatic
+
+	column alcohol_quantity_milliliters
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ccc9f0c-562b-4723-bc00-6f34da0703d5
+		summarizeBy: sum
+		sourceColumn: alcohol_quantity_milliliters
+
+		annotation SummarizationSetBy = Automatic
+
+	column alcohol_preference
+		dataType: string
+		lineageTag: 997d741b-3a45-44de-a987-64e60da62cb8
+		summarizeBy: none
+		sourceColumn: alcohol_preference
+
+		annotation SummarizationSetBy = Automatic
+
+	column drugs_preference
+		dataType: int64
+		formatString: 0
+		lineageTag: c9957b4a-337b-4809-be90-29331ee59e2d
+		summarizeBy: sum
+		sourceColumn: drugs_preference
+
+		annotation SummarizationSetBy = Automatic
+
+	column drugs_years_use
+		dataType: int64
+		formatString: 0
+		lineageTag: bc8f9085-bec5-4f46-9b89-2fb65ecb6d29
+		summarizeBy: sum
+		sourceColumn: drugs_years_use
+
+		annotation SummarizationSetBy = Automatic
+
+	column drugs_during_pregnancy
+		dataType: int64
+		formatString: 0
+		lineageTag: b8248803-f494-4bc8-92a0-759c4bfa2e26
+		summarizeBy: sum
+		sourceColumn: drugs_during_pregnancy
+
+		annotation SummarizationSetBy = Automatic
+
+	column hiv_1tri
+		dataType: int64
+		formatString: 0
+		lineageTag: c5f43236-6e61-447e-bc84-cddee0f6ef91
+		summarizeBy: sum
+		sourceColumn: hiv_1tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column syphilis_1tri
+		dataType: int64
+		formatString: 0
+		lineageTag: 272e9660-8537-425c-a144-b235492a21cd
+		summarizeBy: sum
+		sourceColumn: syphilis_1tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column c_hepatitis_1tri
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fc63d13-c544-4b18-988b-a793c7cd6e41
+		summarizeBy: sum
+		sourceColumn: c_hepatitis_1tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column gestational_diabetes_mellitus
+		dataType: int64
+		formatString: 0
+		lineageTag: 94f0cc41-4f23-45e9-be48-bde63657698c
+		summarizeBy: sum
+		sourceColumn: gestational_diabetes_mellitus
+
+		annotation SummarizationSetBy = Automatic
+
+	column chronic_diabetes
+		dataType: int64
+		formatString: 0
+		lineageTag: fcf8ac84-e0d6-47c7-bb9b-55af938cd795
+		summarizeBy: sum
+		sourceColumn: chronic_diabetes
+
+		annotation SummarizationSetBy = Automatic
+
+	column chronic_diseases
+		dataType: int64
+		formatString: 0
+		lineageTag: d3b12e4c-314e-43fb-a181-06ed9c26ed39
+		summarizeBy: sum
+		sourceColumn: chronic_diseases
+
+		annotation SummarizationSetBy = Automatic
+
+	column hypertension_past_reported
+		dataType: int64
+		formatString: 0
+		lineageTag: 19ca5bf8-bf2d-4560-95b2-c918b343abf8
+		summarizeBy: sum
+		sourceColumn: hypertension_past_reported
+
+		annotation SummarizationSetBy = Automatic
+
+	column hypertension_past_treatment
+		dataType: int64
+		formatString: 0
+		lineageTag: 4401cd68-e3cd-441f-92bc-74eab2cb2a64
+		summarizeBy: sum
+		sourceColumn: hypertension_past_treatment
+
+		annotation SummarizationSetBy = Automatic
+
+	column diabetes_mellitus_dm_reported
+		dataType: int64
+		formatString: 0
+		lineageTag: be84ec52-e63a-4e72-8f74-b6484eab17ce
+		summarizeBy: sum
+		sourceColumn: diabetes_mellitus_dm_reported
+
+		annotation SummarizationSetBy = Automatic
+
+	column diabetes_mellitus_disease_gap
+		dataType: int64
+		formatString: 0
+		lineageTag: 306600eb-70ac-4e7b-813f-848e93e561ea
+		summarizeBy: sum
+		sourceColumn: diabetes_mellitus_disease_gap
+
+		annotation SummarizationSetBy = Automatic
+
+	column diabetes_mellitus_treatment
+		dataType: string
+		lineageTag: b9278fd8-7b4e-4e98-b20a-a906b2bb29e4
+		summarizeBy: none
+		sourceColumn: diabetes_mellitus_treatment
+
+		annotation SummarizationSetBy = Automatic
+
+	column HTN_DM_GDM = ```
+			
+			IF ( 'public fetal_development_risk'[hypertension_past_reported] = 1, "HTN",
+			    IF ('public fetal_development_risk'[diabetes_mellitus_dm_reported] = 1, "DM",
+			        IF ('public fetal_development_risk'[gestational_diabetes_mellitus] = 1, "GDM", "NONE")
+			    )
+			)
+			
+			
+			```
+		lineageTag: cd904212-6f03-4b80-93cf-318fe170c5d0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Health_Status = ```
+			
+			SWITCH(
+			    TRUE(),
+			    'public fetal_development_risk'[hiv_1tri]= 1, "HIV",
+			    'public fetal_development_risk'[syphilis_1tri]= 1, "Syphilis",
+			    'public fetal_development_risk'[c_hepatitis_1tri] = 1, "Hepatitis C",
+			    'public fetal_development_risk'[chronic_diseases] = 1, "Chronic_Diseases",
+			    "No Condition"
+			)
+			
+			```
+		lineageTag: 1697d1af-1497-4ef7-96cd-d231d8a2bf3a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Diabetes = IF('public fetal_development_risk'[diabetes_mellitus_dm_reported] = 1 || 'public fetal_development_risk'[gestational_diabetes_mellitus] = 1 || 'public fetal_development_risk'[chronic_diabetes] =1,1,0)
+		formatString: 0
+		lineageTag: d2993b2c-5140-4f29-a6f2-358418eb925d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public fetal_development_risk' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "Project_MH"),
+				    public_fetal_development_risk = Source{[Schema="public",Item="fetal_development_risk"]}[Data]
+				in
+				    public_fetal_development_risk
+
+	annotation PBI_ResultType = Table
+

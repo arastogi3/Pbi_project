@@ -1,0 +1,113 @@
+table 'public previous_pregnancy'
+	lineageTag: 68a590c0-152a-4986-9f09-e0054e01f361
+
+	column case_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 94666dee-2918-454b-a198-5b06155ae723
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column past_newborn_1_weight
+		dataType: int64
+		formatString: 0
+		lineageTag: cb663214-f6ea-4712-aa71-64fa4a165d1b
+		summarizeBy: sum
+		sourceColumn: past_newborn_1_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column gestational_age_past_newborn_1
+		dataType: int64
+		formatString: 0
+		lineageTag: 2545f480-f2ca-4271-97ec-eb7187bcf34a
+		summarizeBy: sum
+		sourceColumn: gestational_age_past_newborn_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column past_newborn_2_weight
+		dataType: int64
+		formatString: 0
+		lineageTag: 247d6707-e185-4901-b5b4-22920892c2b6
+		summarizeBy: sum
+		sourceColumn: past_newborn_2_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column gestational_age_past_newborn_2
+		dataType: int64
+		formatString: 0
+		lineageTag: 1953797d-6ae6-4af4-8a37-9c50428c43d1
+		summarizeBy: sum
+		sourceColumn: gestational_age_past_newborn_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column past_newborn_3_weight
+		dataType: int64
+		formatString: 0
+		lineageTag: 1dc70c01-cdb9-440f-ad93-a3e313d04eeb
+		summarizeBy: sum
+		sourceColumn: past_newborn_3_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column gestational_age_past_newborn_3
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c5ac44e-185d-4fb6-ab40-f30d3a9044e5
+		summarizeBy: sum
+		sourceColumn: gestational_age_past_newborn_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column past_newborn_4_weight
+		dataType: int64
+		formatString: 0
+		lineageTag: 16ba7c97-5367-4ead-bed5-9233facd66db
+		summarizeBy: sum
+		sourceColumn: past_newborn_4_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column gestational_age_past_4_newborn
+		dataType: int64
+		formatString: 0
+		lineageTag: 40fd19f3-3ad9-4cd7-9d18-5a9d2dc2a914
+		summarizeBy: sum
+		sourceColumn: gestational_age_past_4_newborn
+
+		annotation SummarizationSetBy = Automatic
+
+	column past_pregnancies_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 554c0e6e-74d7-4016-8050-93aad034da3a
+		summarizeBy: sum
+		sourceColumn: past_pregnancies_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column miscarriage
+		dataType: int64
+		formatString: 0
+		lineageTag: ca2abb18-a9be-40b4-8e3e-1442c41a5e13
+		summarizeBy: sum
+		sourceColumn: miscarriage
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public previous_pregnancy' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "Project_MH"),
+				    public_previous_pregnancy = Source{[Schema="public",Item="previous_pregnancy"]}[Data]
+				in
+				    public_previous_pregnancy
+
+	annotation PBI_ResultType = Table
+

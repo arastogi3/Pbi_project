@@ -1,0 +1,290 @@
+table 'public new_born_details'
+	lineageTag: fa0f919b-1ff6-4475-96d0-7a009b622bcf
+
+	measure Count_of_Newborns = ```
+			
+			COUNT('public new_born_details'[gestational_age_at_birth])
+			
+			
+			```
+		formatString: 0
+		lineageTag: b52d6147-6b97-4e08-b016-3741c51f7b77
+
+	measure '% new born complications' = ```
+			DIVIDE( CALCULATE(COUNT('public new_born_details'[case_id]),NOT(ISBLANK('public new_born_details'[New born complications]))), 
+			[Total new born])
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1f552894-49fb-40a7-9a0a-cf11a951da43
+
+	measure 'Total new born' =
+			
+			CALCULATE(COUNT('public new_born_details'[case_id]), NOT(ISBLANK('public new_born_details'[gestational_age_at_birth])))
+		formatString: 0
+		lineageTag: d79f4b94-811f-4d7b-a43f-a3bfdf6a5330
+
+	measure '% Low birth Weight' = DIVIDE( CALCULATE(COUNT('public new_born_details'[case_id]), 'public new_born_details'[New born birth_weight classification] = "Low Birth Weight" || 'public new_born_details'[New born birth_weight classification] = "Very Low Birth Weight") , [Total new born] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 51907b1e-eb43-46e3-aa6f-312ea1dc18f3
+
+	measure '% Macrosomia' =
+			DIVIDE( CALCULATE(COUNT('public new_born_details'[case_id]), 'public new_born_details'[New born birth_weight classification] = "Macrosomia") ,
+			[Total new born]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: f222d670-56be-4389-b3c8-eb274f0b1b38
+
+	measure followup_patients =
+			
+			COUNTA('public new_born_details'[apgar_1st_min])
+		formatString: 0
+		lineageTag: 105fd120-3594-444d-ae52-df38e541477c
+
+	measure nofollowup_patients =
+			
+			COUNTROWS('public new_born_details') - [followup_patients]
+		formatString: 0
+		lineageTag: dc2c4c55-cf03-4975-aaca-4ecf12b7cdf3
+
+	column case_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f7ed41bd-124a-4896-91de-cd306b1b9c33
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_weight_for_the_newborn
+		dataType: double
+		lineageTag: b7874cbe-329b-4b10-8052-199bf7dee5ed
+		summarizeBy: sum
+		sourceColumn: expected_weight_for_the_newborn
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column newborn_weight
+		dataType: double
+		lineageTag: d501bd44-5669-4e5f-aad3-5aa71ff651de
+		summarizeBy: sum
+		sourceColumn: newborn_weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column newborn_height
+		dataType: double
+		lineageTag: aa0bea6a-11ab-42b3-bfb7-d64c62bdb1c2
+		summarizeBy: sum
+		sourceColumn: newborn_height
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column newborn_head_circumference
+		dataType: double
+		lineageTag: fb9709ee-510d-4040-b006-1b0852bcadbf
+		summarizeBy: sum
+		sourceColumn: newborn_head_circumference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column thoracic_perimeter_newborn
+		dataType: double
+		lineageTag: 532b7d68-b7e6-4612-8f49-85cd97e4a9f9
+		summarizeBy: sum
+		sourceColumn: thoracic_perimeter_newborn
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column newborn_intubation
+		dataType: int64
+		formatString: 0
+		lineageTag: 80be8a60-3fe4-42b6-b325-c158c5b30d86
+		summarizeBy: sum
+		sourceColumn: newborn_intubation
+
+		annotation SummarizationSetBy = Automatic
+
+	column newborn_airway_aspiration
+		dataType: int64
+		formatString: 0
+		lineageTag: ffa26897-f0cc-4d06-9443-1b8dd88053a6
+		summarizeBy: sum
+		sourceColumn: newborn_airway_aspiration
+
+		annotation SummarizationSetBy = Automatic
+
+	column gestational_age_at_birth
+		dataType: double
+		lineageTag: ccd79f30-2112-4f38-80b6-e81796a09397
+		summarizeBy: sum
+		sourceColumn: gestational_age_at_birth
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pediatric_resuscitation_maneuvers
+		dataType: int64
+		formatString: 0
+		lineageTag: c35b4077-cc59-4842-b9ca-1d9f1fc66ae3
+		summarizeBy: sum
+		sourceColumn: pediatric_resuscitation_maneuvers
+
+		annotation SummarizationSetBy = Automatic
+
+	column apgar_1st_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 3bd3e269-3fd3-4761-a4b7-31884c460d83
+		summarizeBy: sum
+		sourceColumn: apgar_1st_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column apgar_5th_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 831ed9fc-339e-4608-bc87-a45422414514
+		summarizeBy: sum
+		sourceColumn: apgar_5th_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column meconium_labor
+		dataType: int64
+		formatString: 0
+		lineageTag: e6d02784-6be9-4bac-999a-3520345d28be
+		summarizeBy: sum
+		sourceColumn: meconium_labor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery_Category = ```
+			
+			IF(
+			    'public new_born_details'[gestational_age_at_birth] < 37, 
+			    "Preterm", 
+			    "Full Term"
+			)
+			
+			```
+		lineageTag: 756e09b2-f3ac-44e1-8844-e789f2f8a123
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Newborn weight category' = if('public new_born_details'[newborn_weight]<2.5,"Low birth weight","High birth weight")
+		lineageTag: 38bb935f-ec33-420d-8bcc-7d4e130edca8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Apgar score' = if('public new_born_details'[apgar_1st_min]>=7,"Normal Apgar score","Abnormal Apgar score")
+		lineageTag: 24b02479-ba56-4f90-b71e-ce308e59bdde
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GESTATIONAL AGE CATEGORY' = SWITCH(TRUE(),'public new_born_details'[gestational_age_at_birth]<37,"PRETERM",'public new_born_details'[gestational_age_at_birth]>=37 && 'public new_born_details'[gestational_age_at_birth]<=42,"FULLTERM", 'public new_born_details'[gestational_age_at_birth]>42,"POSTTERM","unknown")
+		lineageTag: 9b78dc26-e3a2-43dd-8581-43faf7265d15
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gestational Age Classification' =
+			SWITCH(
+			    True(),
+			    ISBLANK('public new_born_details'[gestational_age_at_birth]), "",
+			    'public new_born_details'[gestational_age_at_birth] < 28, "Extremely Preterm",
+			    'public new_born_details'[gestational_age_at_birth] >=28 && 'public new_born_details'[gestational_age_at_birth]<32, "Very Preterm",
+			    'public new_born_details'[gestational_age_at_birth]>=32 && 'public new_born_details'[gestational_age_at_birth] < 34, "Moderately Preterm",
+			    'public new_born_details'[gestational_age_at_birth]>=34 && 'public new_born_details'[gestational_age_at_birth] <37, "Late Preterm",
+			    'public new_born_details'[gestational_age_at_birth] >=37, "Full Term"
+			)
+		lineageTag: be57be3d-46a7-49a2-b8b2-6a38649d9edf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column GA_Classification = ```
+			
+			SWITCH(
+			    TRUE(),
+			    'public new_born_details'[gestational_age_at_birth] < 37, "Preterm",
+			    'public new_born_details'[gestational_age_at_birth] >= 37 && 'public new_born_details'[gestational_age_at_birth] <= 42, "Full Term",
+			    'public new_born_details'[gestational_age_at_birth] > 42, "Post Term",
+			    "Unknown"
+			)
+			
+			```
+		lineageTag: 3449eb67-9520-4c42-8893-eccfa2eac356
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Birth_term =
+			
+			IF(
+			    NOT(ISBLANK('public new_born_details'[gestational_age_at_birth])),
+			    SWITCH(
+			        TRUE(),
+			       'public new_born_details'[gestational_age_at_birth] < 37, "Preterm",
+			      'public new_born_details'[gestational_age_at_birth] > 37, "Full-term",
+			        BLANK()
+			    ),
+			    "Unknown"
+			)
+		lineageTag: 4ad3ec89-4ff9-4a64-9207-1094defcb5d9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New born complications' =
+			
+			SWITCH(
+			    TRUE(),
+			    ('public new_born_details'[meconium_labor] = 1 || 'public new_born_details'[newborn_airway_aspiration] = 1) && ('public new_born_details'[newborn_intubation] = 1 || 'public new_born_details'[pediatric_resuscitation_maneuvers] = 1), "Both",
+			    'public new_born_details'[meconium_labor] = 1 || 'public new_born_details'[newborn_airway_aspiration] = 1, "Meconium Aspiration Syndrome",
+			    'public new_born_details'[newborn_intubation] = 1 || 'public new_born_details'[pediatric_resuscitation_maneuvers] = 1, "Respiratory Distress Syndrome"
+			)
+		lineageTag: 6cb042d5-7e2d-403c-82bf-b44e12ea3f68
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'New born birth_weight classification' =
+			
+			SWITCH(TRUE(),
+			ISBLANK('public new_born_details'[newborn_weight]),BLANK(),
+			'public new_born_details'[newborn_weight] < 1, "Extremely Low Birth Weight",
+			'public new_born_details'[newborn_weight] >= 1 && 'public new_born_details'[newborn_weight] < 1.5, "Very Low Birth Weight",
+			'public new_born_details'[newborn_weight] >= 1.5 && 'public new_born_details'[newborn_weight] < 2.5, "Low Birth Weight",
+			'public new_born_details'[newborn_weight] >= 2.5 && 'public new_born_details'[newborn_weight] < 4, "Normal Birth Weight",
+			'public new_born_details'[newborn_weight] >= 4 , "Macrosomia"
+			)
+		lineageTag: a7a98c00-9cbf-4883-9580-2cfbcf82b81c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public new_born_details' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "Project_MH"),
+				    public_new_born_details = Source{[Schema="public",Item="new_born_details"]}[Data]
+				in
+				    public_new_born_details
+
+	annotation PBI_ResultType = Table
+

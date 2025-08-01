@@ -1,0 +1,268 @@
+table 'public pregnancy_nutritional_details'
+	lineageTag: 0b60fc78-9eb4-4318-b921-80d5fdb63331
+
+	measure Total_Meals =
+			
+			SUM('public pregnancy_nutritional_details'[breakfast_meal]) +
+			SUM('public pregnancy_nutritional_details'[lunch_meal]) +
+			SUM('public pregnancy_nutritional_details'[meal_dinner]) +
+			SUM('public pregnancy_nutritional_details'[supper_meal] )+
+			SUM('public pregnancy_nutritional_details'[morning_snack]) +
+			SUM('public pregnancy_nutritional_details'[afternoon_snack])
+		formatString: 0
+		lineageTag: b3b27037-a821-4880-9cf4-c80adbfed421
+
+	measure HealthyDietCount = ```
+			
+			CALCULATE(
+			    COUNT('public pregnancy_nutritional_details'[case_id]),
+			    'public pregnancy_nutritional_details'[FoodCategory] = "Healthy"
+			)
+			
+			```
+		lineageTag: ba59b7fb-6244-45a9-bff4-065d8f5d227d
+
+	measure UnhealthyDietCount =
+			
+			CALCULATE(
+			    COUNT('public pregnancy_nutritional_details'[case_id]),
+			    'public pregnancy_nutritional_details'[FoodCategory] = "Unhealthy"
+			)
+		formatString: 0
+		lineageTag: bc99fe55-0427-4a22-814c-e199f3e1fa54
+
+	column case_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ae2dae3-937a-4864-84d4-273156a20781
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column breakfast_meal
+		dataType: int64
+		formatString: 0
+		lineageTag: de8240e0-4903-4047-8e1f-1fc7a89d7621
+		summarizeBy: sum
+		sourceColumn: breakfast_meal
+
+		annotation SummarizationSetBy = Automatic
+
+	column morning_snack
+		dataType: int64
+		formatString: 0
+		lineageTag: 66a6da99-6392-4cd1-88be-dd28c66f2dd3
+		summarizeBy: sum
+		sourceColumn: morning_snack
+
+		annotation SummarizationSetBy = Automatic
+
+	column lunch_meal
+		dataType: int64
+		formatString: 0
+		lineageTag: 45138dd0-b572-4b2a-9acb-47bc7f7beb55
+		summarizeBy: sum
+		sourceColumn: lunch_meal
+
+		annotation SummarizationSetBy = Automatic
+
+	column afternoon_snack
+		dataType: int64
+		formatString: 0
+		lineageTag: f2059027-6806-4759-afd2-d754c344c76b
+		summarizeBy: sum
+		sourceColumn: afternoon_snack
+
+		annotation SummarizationSetBy = Automatic
+
+	column meal_dinner
+		dataType: int64
+		formatString: 0
+		lineageTag: f56be4ce-ac7e-48d7-a023-72a8fb09d82e
+		summarizeBy: sum
+		sourceColumn: meal_dinner
+
+		annotation SummarizationSetBy = Automatic
+
+	column supper_meal
+		dataType: int64
+		formatString: 0
+		lineageTag: e970a99e-ca8e-4a35-b0dc-dccc6d545c6b
+		summarizeBy: sum
+		sourceColumn: supper_meal
+
+		annotation SummarizationSetBy = Automatic
+
+	column bean
+		dataType: int64
+		formatString: 0
+		lineageTag: e99bd147-434d-47da-847d-f99a552c75b3
+		summarizeBy: sum
+		sourceColumn: bean
+
+		annotation SummarizationSetBy = Automatic
+
+	column fruits
+		dataType: int64
+		formatString: 0
+		lineageTag: ccf72f84-ed35-440c-9bd0-2e7aecc9c3f8
+		summarizeBy: sum
+		sourceColumn: fruits
+
+		annotation SummarizationSetBy = Automatic
+
+	column vegetables
+		dataType: int64
+		formatString: 0
+		lineageTag: 8f0cf005-f848-4c1b-8764-1b2c1edacae1
+		summarizeBy: sum
+		sourceColumn: vegetables
+
+		annotation SummarizationSetBy = Automatic
+
+	column embedded_food
+		dataType: int64
+		formatString: 0
+		lineageTag: 32bd4a28-3561-499b-a7c2-b80aa81591cb
+		summarizeBy: sum
+		sourceColumn: embedded_food
+
+		annotation SummarizationSetBy = Automatic
+
+	column pasta
+		dataType: int64
+		formatString: 0
+		lineageTag: 70d1ef1d-dc79-4ed6-bce0-deb6b27e6b40
+		summarizeBy: sum
+		sourceColumn: pasta
+
+		annotation SummarizationSetBy = Automatic
+
+	column cookies
+		dataType: int64
+		formatString: 0
+		lineageTag: 9117c12a-4b12-4f24-a7ef-8bf0a93e8074
+		summarizeBy: sum
+		sourceColumn: cookies
+
+		annotation SummarizationSetBy = Automatic
+
+	column All_Meals_CaseID = ```
+			
+			IF(
+			    'public pregnancy_nutritional_details'[breakfast_meal] = 1 &&
+			    'public pregnancy_nutritional_details'[lunch_meal] = 1 &&
+			    'public pregnancy_nutritional_details'[meal_dinner] = 1 &&
+			    'public pregnancy_nutritional_details'[supper_meal] = 1 &&
+			    'public pregnancy_nutritional_details'[morning_snack] = 1 &&
+			    'public pregnancy_nutritional_details'[afternoon_snack] = 1,
+			    'public pregnancy_nutritional_details'[case_id],
+			    BLANK()
+			    
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 06b4fdda-1af3-461a-ae2b-9345f1edd131
+		summarizeBy: count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Not_All_Meals_CaseID = ```
+			
+			IF(
+			    ISBLANK('public pregnancy_nutritional_details'[All_Meals_CaseID]),
+			    'public pregnancy_nutritional_details'[case_id],
+			    BLANK()
+			)
+			
+			```
+		formatString: 0
+		lineageTag: ede9711e-95d7-4b7b-8acf-f6b40b4eecc3
+		summarizeBy: count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Three_Meals_CaseID = ```
+			
+			IF(
+			    'public pregnancy_nutritional_details'[All_Meals_CaseID] = BLANK() &&
+			    (
+			        'public pregnancy_nutritional_details'[breakfast_meal] +
+			        'public pregnancy_nutritional_details'[lunch_meal] +
+			        'public pregnancy_nutritional_details'[meal_dinner] +
+			        'public pregnancy_nutritional_details'[supper_meal] +
+			        'public pregnancy_nutritional_details'[morning_snack] +
+			        'public pregnancy_nutritional_details'[afternoon_snack]
+			    ) = 3,
+			    'public pregnancy_nutritional_details'[case_id],
+			    BLANK()
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 53beaea3-dfb0-429e-b839-3c93a28a3eee
+		summarizeBy: count
+
+		annotation SummarizationSetBy = Automatic
+
+	column FoodCategoryColumn = ```
+			
+			
+			    SWITCH (
+			        TRUE(),
+			        'public pregnancy_nutritional_details'[vegetables] = 1 && 'public pregnancy_nutritional_details'[fruits] = 1 && 'public pregnancy_nutritional_details'[bean] = 1 , "Healthy",
+			        "Unhealthy"
+			    
+			)
+			```
+		lineageTag: e0030f44-f4a3-4d08-b565-42f4c69cbd90
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sufficient Meals' = IF('public pregnancy_nutritional_details'[breakfast_meal]+'public pregnancy_nutritional_details'[lunch_meal]+'public pregnancy_nutritional_details'[meal_dinner]+'public pregnancy_nutritional_details'[supper_meal] >=3, "Sufficient Meals", IF('public pregnancy_nutritional_details'[breakfast_meal]+'public pregnancy_nutritional_details'[lunch_meal]+'public pregnancy_nutritional_details'[meal_dinner]+'public pregnancy_nutritional_details'[supper_meal] <3, "Insufficient Meals"))
+		lineageTag: 9c6a9f57-994e-4eed-b429-c21bac56ba89
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Food_Macronutrient_Group = ```
+			
+			SWITCH(
+			    TRUE(),
+			    'public pregnancy_nutritional_details'[fruits] > 0 || 'public pregnancy_nutritional_details'[vegetables] > 0, "Fiber & Vitamins", 
+			    'public pregnancy_nutritional_details'[bean] > 0, "Protein", 
+			    'public pregnancy_nutritional_details'[pasta] > 0 || 'public pregnancy_nutritional_details'[cookies] > 0 || 'public pregnancy_nutritional_details'[embedded_food] > 0, "Carbohydrates", 
+			    BLANK() 
+			)
+			```
+		lineageTag: 0927800f-669a-4b35-9ccb-befd028de2ad
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column FoodCategory =
+			
+			SWITCH(
+			    TRUE(),
+			    'public pregnancy_nutritional_details'[vegetables] > 0 && 'public pregnancy_nutritional_details'[fruits] > 0 && 'public pregnancy_nutritional_details'[bean] >0, "Healthy",
+			    'public pregnancy_nutritional_details'[cookies] > 0 && 'public pregnancy_nutritional_details'[pasta] > 0, "Unhealthy"
+			    )
+		lineageTag: 1db6be96-a1d2-4436-ab2c-bbed702bc586
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public pregnancy_nutritional_details' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "Project_MH"),
+				    public_pregnancy_nutritional_details = Source{[Schema="public",Item="pregnancy_nutritional_details"]}[Data]
+				in
+				    public_pregnancy_nutritional_details
+
+	annotation PBI_ResultType = Table
+

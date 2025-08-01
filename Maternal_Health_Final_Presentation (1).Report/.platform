@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Maternal_Health_Final_Presentation (1)"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "204dbb9a-1b08-46d6-aeeb-0f8d2c7c6e4b"
+  }
+}

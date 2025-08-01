@@ -1,0 +1,31 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["public anthropometry","public bmi_metrics","public demographics","public fetal_development_risk","public hospitalization_labor","public labs","public maternal_health","public new_born_details","public pregnancy_nutritional_details","public previous_pregnancy","public ultrasound_results","gdm_predictions_secondTrimester"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.145.1457.0 (25.07)+6e87ffa743c5aa106a85a0b5e383d76d522045ba
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'public anthropometry'
+ref table 'public bmi_metrics'
+ref table 'public demographics'
+ref table 'public fetal_development_risk'
+ref table 'public hospitalization_labor'
+ref table 'public labs'
+ref table 'public maternal_health'
+ref table 'public new_born_details'
+ref table 'public pregnancy_nutritional_details'
+ref table 'public previous_pregnancy'
+ref table 'public ultrasound_results'
+ref table gdm_predictions_secondTrimester
+
+ref cultureInfo en-US
+

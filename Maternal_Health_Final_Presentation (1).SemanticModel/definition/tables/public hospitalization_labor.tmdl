@@ -1,0 +1,362 @@
+table 'public hospitalization_labor'
+	lineageTag: 0283da78-8351-4f12-af0a-a77a541efa69
+
+	measure '% Vaginal' = ```
+			DIVIDE(CALCULATE(COUNT('public hospitalization_labor'[case_id]),'public hospitalization_labor'[delivery_mode_category] = "VAGINAL"),
+			            [Total cases]
+			            )
+			   
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: f33b0534-525b-4521-9b69-8a28a13ffea8
+
+	measure '% C_SECTION' =
+			DIVIDE(CALCULATE(COUNT('public hospitalization_labor'[case_id]),'public hospitalization_labor'[delivery_mode_category] = "C_SECTION"),
+			            [Total cases]
+			            )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 885b94e8-ef96-4faa-a499-fd50069eaa09
+
+	measure '% Hypertension' =
+			DIVIDE(CALCULATE(COUNT('public hospitalization_labor'[case_id]),'public hospitalization_labor'[hospital_hypertension] = 1),
+			            [Total cases]
+			            )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 500373ae-0799-40fc-900b-360ed44a6a50
+
+	column case_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b48a817d-474e-4998-99c5-c434821779e3
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column disease_diagnose_during_pregnancy
+		dataType: string
+		lineageTag: 62c0a2c3-abeb-4011-ba70-e83593fb8d96
+		summarizeBy: none
+		sourceColumn: disease_diagnose_during_pregnancy
+
+		annotation SummarizationSetBy = Automatic
+
+	column treatment_disease_pregnancy
+		dataType: string
+		lineageTag: 6750b063-1597-4a59-ab40-854b3e0c9a2a
+		summarizeBy: none
+		sourceColumn: treatment_disease_pregnancy
+
+		annotation SummarizationSetBy = Automatic
+
+	column prepartum_maternal_weight
+		dataType: double
+		lineageTag: edd920a6-d039-4380-a5d4-bf5f17f9e0d0
+		summarizeBy: sum
+		sourceColumn: prepartum_maternal_weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prepartum_maternal_height
+		dataType: double
+		lineageTag: 9131d508-f6d2-46c5-9a05-1215adf1ed94
+		summarizeBy: sum
+		sourceColumn: prepartum_maternal_height
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column delivery_mode
+		dataType: string
+		lineageTag: 2aa3603d-0226-4063-b518-4aa615cbe069
+		summarizeBy: none
+		sourceColumn: delivery_mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column cesarean_section_reason
+		dataType: string
+		lineageTag: 9a059b67-e7c7-4dc6-9cdb-1d02c326a657
+		summarizeBy: none
+		sourceColumn: cesarean_section_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column hospital_systolic_blood_pressure
+		dataType: int64
+		formatString: 0
+		lineageTag: d10125ba-3807-4bd8-9140-d7cc1d66c609
+		summarizeBy: sum
+		sourceColumn: hospital_systolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+	column hospital_diastolic_blood_pressure
+		dataType: int64
+		formatString: 0
+		lineageTag: 75ddb7f1-8316-4ab9-86be-32e9d3788e39
+		summarizeBy: sum
+		sourceColumn: hospital_diastolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+	column hospital_hypertension
+		dataType: int64
+		formatString: 0
+		lineageTag: 2681de53-ae6f-48d1-9d26-1cd4744c7418
+		summarizeBy: sum
+		sourceColumn: hospital_hypertension
+
+		annotation SummarizationSetBy = Automatic
+
+	column preeclampsia_record_pregnancy
+		dataType: int64
+		formatString: 0
+		lineageTag: 65b9f4a6-1a42-4163-a42d-1ace27cbd1ae
+		summarizeBy: sum
+		sourceColumn: preeclampsia_record_pregnancy
+
+		annotation SummarizationSetBy = Automatic
+
+	column mothers_hospital_stay
+		dataType: int64
+		formatString: 0
+		lineageTag: 2eea5de4-78b1-409b-94ef-3d9ea17a4843
+		summarizeBy: sum
+		sourceColumn: mothers_hospital_stay
+
+		annotation SummarizationSetBy = Automatic
+
+	column number_prenatal_appointments
+		dataType: int64
+		formatString: 0
+		lineageTag: 203fffa3-bff0-4f51-a512-1b40e9803713
+		summarizeBy: sum
+		sourceColumn: number_prenatal_appointments
+
+		annotation SummarizationSetBy = Automatic
+
+	column prepartum_bmi
+		dataType: double
+		lineageTag: c5647c0d-46a6-433b-a4ee-b520bd48d110
+		summarizeBy: sum
+		sourceColumn: prepartum_bmi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prepartum_bmi_who_category
+		dataType: string
+		lineageTag: ab772546-48eb-44bc-8314-ab508e509a83
+		summarizeBy: none
+		sourceColumn: prepartum_bmi_who_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Disease_Category = ```
+			
+			VAR stroke = 
+			    IF(CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "ischemic stroke"), 
+			        "Stroke", 
+			        BLANK()
+			    )
+			
+			VAR Infectious = 
+			    IF(
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "VDRL+") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "UTI") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "pyelonephritis") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "HIV") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "syphilis") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "thb") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "Gestational thrombocytopenia"), 
+			        "Infectious Conditions", 
+			        BLANK()
+			    )
+			
+			VAR Depression = 
+			    IF(
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "depression") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "Cognitive deficit") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "anxiety"), 
+			        "Depression", 
+			        BLANK()
+			    )
+			
+			VAR MetabolicDisorder = 
+			    IF(
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "DM") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "thb + DM") ||
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "DMG"), 
+			        "Metabolic Disorders", 
+			        BLANK()
+			    )
+			
+			VAR Cardiovascular = 
+			    IF(
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "Hypertension") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "hyperthyroidism") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "gestational hypothyroidism"), 
+			        "Cardiovascular Conditions", 
+			        BLANK()
+			    )
+			
+			VAR LungDisorder =
+			    IF(
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "Asthma") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "asthma and bronchitis"), 
+			        "Lung Conditions", 
+			        BLANK()
+			    )
+			
+			VAR LiverDisorder =
+			    IF(
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "colestase") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "hepatitis b") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "hepatitis c"), 
+			        "Liver Conditions", 
+			        BLANK()
+			    )
+			
+			VAR Pregnancy_Complications = 
+			    IF(
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "pre-eclampsia") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "Pre-eclampsia") ||
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "gestational hypertension") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "Hypertension Gestation") || 
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "Hypertension gestational"), 
+			        "Pregnancy Complications", 
+			        BLANK()
+			    )
+			
+			VAR Ophthalmology_Complications = 
+			    IF(
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "glaucoma"), 
+			        "Ophthalmology Complications", 
+			        BLANK()
+			    )
+			
+			VAR Digestive_Disorders = 
+			    IF(
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "lactose intolerance"), 
+			        "Digestive Disorders", 
+			        BLANK()
+			    )
+			
+			VAR Substance_Abuse = 
+			    IF(
+			        CONTAINSSTRING('public hospitalization_labor'[disease_diagnose_during_pregnancy], "alcoholism"), 
+			        "Substance Abuse", 
+			        BLANK()
+			    )
+			
+			RETURN 
+			    COALESCE(
+			        stroke, 
+			        Infectious, 
+			        Depression, 
+			        MetabolicDisorder, 
+			        Cardiovascular, 
+			        LungDisorder, 
+			        LiverDisorder,
+			        Pregnancy_Complications,
+			        Ophthalmology_Complications,
+			        Digestive_Disorders,
+			        Substance_Abuse,
+			        "Other"
+			    )
+			
+			```
+		lineageTag: a954e072-2271-470e-9038-8777cbe83a31
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery_Category = ```
+			
+			SWITCH(
+			    TRUE(),
+			    CONTAINSSTRING('public hospitalization_labor'[delivery_mode], "vaginal"), "VAGINAL",
+			    CONTAINSSTRING('public hospitalization_labor'[delivery_mode], "cesarean"), "C-Section",
+			    BLANK()  -- To handle blanks or other cases
+			)
+			
+			```
+		lineageTag: 03cbc16b-845e-4a74-ba0a-2d965424e322
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryTreatment = ```
+			
+			SWITCH(
+			    TRUE(),
+			    CONTAINSSTRING('public hospitalization_labor'[treatment_disease_pregnancy], "Valproic acid"), "Antiepileptic Drugs",
+			    CONTAINSSTRING('public hospitalization_labor'[treatment_disease_pregnancy], "Insulin") || CONTAINSSTRING('public hospitalization_labor'[treatment_disease_pregnancy], "Metformin"), "Antidiabetic Medications",
+			    CONTAINSSTRING('public hospitalization_labor'[treatment_disease_pregnancy], "Fluoxetine"), "Antidepressants",
+			    CONTAINSSTRING('public hospitalization_labor'[treatment_disease_pregnancy], "Methyldopa"), "Antihypertensives",
+			    CONTAINSSTRING('public hospitalization_labor'[treatment_disease_pregnancy], "Aspirin"), "Pain Relief / Antiplatelet",
+			    CONTAINSSTRING('public hospitalization_labor'[treatment_disease_pregnancy], "Prednisolone"), "Corticosteroids",
+			    CONTAINSSTRING('public hospitalization_labor'[treatment_disease_pregnancy], "Tapazole"), "Antithyroid Drugs",
+			    CONTAINSSTRING('public hospitalization_labor'[treatment_disease_pregnancy], "Diet"), "Non-Medication Approaches",
+			    CONTAINSSTRING('public hospitalization_labor'[treatment_disease_pregnancy], "No treatment"), "Non-Medication Approaches",
+			    CONTAINSSTRING('public hospitalization_labor'[treatment_disease_pregnancy], "Medication"), "General Category",
+			    "Uncategorized"
+			)
+			
+			```
+		lineageTag: d357c06c-775f-40f1-ae50-c6f5fb42c4b5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery Mode Classification' = IF(ISBLANK('public hospitalization_labor'[delivery_mode]), BLANK(),if('public hospitalization_labor'[delivery_mode] = "cesarean section" || 'public hospitalization_labor'[delivery_mode] = "cesarean by jeopardy","Caesarean Section","Vaginal Delivery"))
+		lineageTag: 3f533cab-fa90-40e9-bee7-55db5fba76b1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery Mode Category' =
+			SWITCH(
+			TRUE(),
+			'public hospitalization_labor'[delivery_mode]IN {"vaginal", "vaginal forcipe",
+			"vaginal with episiotomy","vaginal with episiotomy plus forcipe",
+			"vaginal without episiotomy"}, "Vaginal",
+			'public hospitalization_labor'[delivery_mode] IN {"cesarean section", "cesarean by jeopardy"},"Cesarean",
+			BLANK())
+		lineageTag: 6e39799f-030f-4487-84de-070160fbdba4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_mode_category = ```
+			
+			SWITCH(
+			    TRUE(),
+			    'public hospitalization_labor'[delivery_mode] IN {"vaginal", "vaginal forcipe", "vaginal with episiotomy", "vaginal without episiotomy", "vaginal with episiotomy plus forcipe"}, "VAGINAL", -- Vaginal
+			      'public hospitalization_labor'[delivery_mode] IN {"cesarean section", "cesarean by jeopardy"}, "C_SECTION", -- Cesarean
+			    'public hospitalization_labor'[delivery_mode] IN {"miscarriage with curettage", "miscarriage without curettage"}, "MISCARRIGE", -- Miscarriage
+			    BLANK() -- Handle unexpected values
+			)
+			
+			```
+		lineageTag: 5ba3ba05-4aac-4e5e-89f3-71a88e9fea23
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public hospitalization_labor' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "Project_MH"),
+				    public_hospitalization_labor = Source{[Schema="public",Item="hospitalization_labor"]}[Data]
+				in
+				    public_hospitalization_labor
+
+	annotation PBI_ResultType = Table
+

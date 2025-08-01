@@ -1,0 +1,184 @@
+table 'public bmi_metrics'
+	lineageTag: e944c59f-9263-4efe-b696-f1f7faa0d9de
+
+	column case_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 936d0333-714b-40bd-acfa-368a4f6c8e89
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column prepregnant_weight
+		dataType: double
+		lineageTag: 206d9362-66b4-4b73-ae36-6b80378749d3
+		summarizeBy: sum
+		sourceColumn: prepregnant_weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prepregnant_bmi
+		dataType: double
+		lineageTag: 0ebfd955-388e-4bea-b2d5-494ca8e1adac
+		summarizeBy: sum
+		sourceColumn: prepregnant_bmi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column current_maternal_weight_1st_tri
+		dataType: double
+		lineageTag: db63d9e7-7f83-4c22-9a85-9ae530550fbf
+		summarizeBy: sum
+		sourceColumn: current_maternal_weight_1st_tri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column current_maternal_weight_2nd_tri
+		dataType: double
+		lineageTag: 5a835463-1300-4307-987d-78bca382799a
+		summarizeBy: sum
+		sourceColumn: current_maternal_weight_2nd_tri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column current_maternal_weight_3rd_tri
+		dataType: double
+		lineageTag: 7f51361e-74e4-44b4-957d-ba7168939f16
+		summarizeBy: sum
+		sourceColumn: current_maternal_weight_3rd_tri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maternal_weight_at_inclusion
+		dataType: double
+		lineageTag: 0ed330c1-6310-4154-80a9-432c94a5d628
+		summarizeBy: sum
+		sourceColumn: maternal_weight_at_inclusion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hight_at_inclusion
+		dataType: double
+		lineageTag: 7e55dff1-3bd9-4daa-82cf-85fcbc4562e5
+		summarizeBy: sum
+		sourceColumn: hight_at_inclusion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column current_bmi
+		dataType: double
+		lineageTag: e23a11f9-6ca1-4317-a3a0-ea25fbc7a9d9
+		summarizeBy: sum
+		sourceColumn: current_bmi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column current_bmi_according_who
+		dataType: int64
+		formatString: 0
+		lineageTag: fbcfcb10-a3b3-46aa-924b-7cbc2986e386
+		summarizeBy: sum
+		sourceColumn: current_bmi_according_who
+
+		annotation SummarizationSetBy = Automatic
+
+	column bmi_according_who
+		dataType: string
+		lineageTag: ef0ba4c7-7287-4995-892f-3f5f2f40211a
+		summarizeBy: none
+		sourceColumn: bmi_according_who
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_bmi_who_category
+		dataType: string
+		lineageTag: 920f2798-ca27-45da-a42a-0a1b7632b79d
+		summarizeBy: none
+		sourceColumn: current_bmi_who_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrePregnent_BMI_Category = ```
+			
+			SWITCH(
+			    TRUE(),
+			    [prepregnant_bmi] <= 18.5, "Underweight",
+			    [prepregnant_bmi] > 18.5 && [prepregnant_bmi] <= 24.9, "Normal",
+			    [prepregnant_bmi] > 24.9 && [prepregnant_bmi] <= 29.9, "Overweight",
+			    [prepregnant_bmi] > 29.9, "Obese",
+			    "Unknown"
+			)
+			
+			```
+		lineageTag: 6356886b-62bc-4e1d-b599-2f0bad51e0ec
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gestational Weight Gain' = ```
+			IF(
+			    ISBLANK('public bmi_metrics'[prepregnant_bmi])||ISBLANK('public bmi_metrics'[Weight to BMI Ratio]),BLANK(),
+			    SWITCH(
+			        TRUE(),
+			        'public bmi_metrics'[prepregnant_bmi] < 18.5 && 'public bmi_metrics'[Weight to BMI Ratio] <3.5, "Insufficient WG",
+			        'public bmi_metrics'[prepregnant_bmi] < 18.5 && 'public bmi_metrics'[Weight to BMI Ratio] >= 3.5 && 'public bmi_metrics'[Weight to BMI Ratio] <= 4.0, "Normal WG",
+			        'public bmi_metrics'[prepregnant_bmi] < 18.5 && 'public bmi_metrics'[Weight to BMI Ratio] > 4.0, "Excess WG",
+			
+			        'public bmi_metrics'[prepregnant_bmi] >= 18.5 && 'public bmi_metrics'[prepregnant_bmi] <= 24.9 && 'public bmi_metrics'[Weight to BMI Ratio] <3.0, "Insufficient WG",
+			       'public bmi_metrics'[prepregnant_bmi] >= 18.5 && 'public bmi_metrics'[prepregnant_bmi] <= 24.9 && 'public bmi_metrics'[Weight to BMI Ratio] >= 3.0 && 'public bmi_metrics'[Weight to BMI Ratio] <= 3.5, "Normal WG",
+			       'public bmi_metrics'[prepregnant_bmi] >= 18.5 && 'public bmi_metrics'[prepregnant_bmi] <= 24.9 &&'public bmi_metrics'[Weight to BMI Ratio] > 3.5, "Excess WG",
+			      
+			       'public bmi_metrics'[prepregnant_bmi] >= 25.0 && 'public bmi_metrics'[prepregnant_bmi] <= 29.9 && 'public bmi_metrics'[Weight to BMI Ratio] <2.5 , "Insufficient WG",
+			       'public bmi_metrics'[prepregnant_bmi] >= 25.0 && 'public bmi_metrics'[prepregnant_bmi] <= 29.9 && 'public bmi_metrics'[Weight to BMI Ratio] >= 2.5 && 'public bmi_metrics'[Weight to BMI Ratio] <= 3.0, "Normal WG",
+			       'public bmi_metrics'[prepregnant_bmi] >= 25.0 && 'public bmi_metrics'[prepregnant_bmi] <= 29.9 &&'public bmi_metrics'[Weight to BMI Ratio] > 3.0, "Excess WG",
+			
+			       'public bmi_metrics'[prepregnant_bmi] >= 30.0 && 'public bmi_metrics'[Weight to BMI Ratio] <2.0, "Insufficient WG",
+			        'public bmi_metrics'[prepregnant_bmi] >= 30.0 && 'public bmi_metrics'[Weight to BMI Ratio] >= 2.0 && 'public bmi_metrics'[Weight to BMI Ratio] <= 2.5, "Normal WG",
+			        'public bmi_metrics'[prepregnant_bmi] >= 30.0 && 'public bmi_metrics'[Weight to BMI Ratio] > 2.5, "Excess WG",
+			
+			       BLANK()
+			    ))
+			```
+		lineageTag: 8337aa2d-259f-4f9b-906e-b69eaa28b980
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weight to BMI Ratio' =
+			IF(ISBLANK('public bmi_metrics'[maternal_weight_at_inclusion])|| ISBLANK('public bmi_metrics'[prepregnant_bmi]),BLANK(),
+			'public bmi_metrics'[maternal_weight_at_inclusion]/'public bmi_metrics'[prepregnant_bmi])
+		lineageTag: ff5a8830-d73b-443a-92e9-f37a195abc96
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'public bmi_metrics' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "Project_MH"),
+				    public_bmi_metrics = Source{[Schema="public",Item="bmi_metrics"]}[Data]
+				in
+				    public_bmi_metrics
+
+	annotation PBI_ResultType = Table
+

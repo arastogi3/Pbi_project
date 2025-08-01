@@ -1,0 +1,122 @@
+relationship f68ca9fe-1389-fb47-613c-3a28c1d24cbf
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'public demographics'.case_id
+	toColumn: 'public anthropometry'.case_id
+
+relationship 15307bca-9f1e-b399-e703-97ec3e1a7a81
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'public demographics'.case_id
+	toColumn: 'public hospitalization_labor'.case_id
+
+relationship f1510be6-cd8a-8b1f-1b3d-18236bf008c9
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'public demographics'.case_id
+	toColumn: 'public labs'.case_id
+
+relationship 2c4536e6-02ae-efa8-69ff-f024d2c92425
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'public demographics'.case_id
+	toColumn: 'public ultrasound_results'.case_id
+
+relationship f836cf10-158a-2033-229d-c502b6879909
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'public demographics'.case_id
+	toColumn: 'public pregnancy_nutritional_details'.case_id
+
+relationship 11f77e4f-54b7-701a-97e0-8f2e0f636f4a
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'public demographics'.case_id
+	toColumn: 'public previous_pregnancy'.case_id
+
+relationship 74e84c57-b4d7-c461-2cbf-2fae1a55f460
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'public demographics'.case_id
+	toColumn: 'public fetal_development_risk'.case_id
+
+relationship 23119181-f35d-22fe-b2e3-f0817a959c12
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'public demographics'.case_id
+	toColumn: 'public new_born_details'.case_id
+
+relationship 231c134a-6dde-2c29-be48-38bbe8d1e946
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'public demographics'.case_id
+	toColumn: 'public bmi_metrics'.case_id
+
+relationship AutoDetected_60314e38-9915-4fe5-9ffa-7ba899f309ef
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: gdm_predictions_secondTrimester.case_id
+	toColumn: 'public anthropometry'.case_id
+
+relationship AutoDetected_737317dc-d853-4343-b3a3-c375f254d482
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: gdm_predictions_secondTrimester.case_id
+	toColumn: 'public bmi_metrics'.case_id
+
+relationship AutoDetected_ac59a9a7-e9d1-4d23-8efc-872c2d8f9eb6
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: gdm_predictions_secondTrimester.case_id
+	toColumn: 'public fetal_development_risk'.case_id
+
+relationship AutoDetected_3825e0aa-a635-45c9-a332-63266f7ca0e3
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: gdm_predictions_secondTrimester.case_id
+	toColumn: 'public hospitalization_labor'.case_id
+
+relationship AutoDetected_90de8473-0c10-44e9-9bea-38e0a2813dd8
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: gdm_predictions_secondTrimester.case_id
+	toColumn: 'public labs'.case_id
+
+relationship AutoDetected_b7fe9808-cafa-41f0-8476-94e4f72e13bd
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: gdm_predictions_secondTrimester.case_id
+	toColumn: 'public new_born_details'.case_id
+
+relationship AutoDetected_74722f68-35cb-49b1-b04a-2a217f469e6a
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: gdm_predictions_secondTrimester.case_id
+	toColumn: 'public pregnancy_nutritional_details'.case_id
+
+relationship AutoDetected_3c8718bf-4b09-4a40-9d79-ed7dc934a327
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: gdm_predictions_secondTrimester.case_id
+	toColumn: 'public previous_pregnancy'.case_id
+
+relationship AutoDetected_07fb2cb2-0867-4485-83d8-9ab8dd2b27b7
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: gdm_predictions_secondTrimester.case_id
+	toColumn: 'public ultrasound_results'.case_id
+
+relationship AutoDetected_25d65496-193e-4c85-8d52-bb09fb0ac846
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: gdm_predictions_secondTrimester.case_id
+	toColumn: 'public maternal_health'.case_id
+

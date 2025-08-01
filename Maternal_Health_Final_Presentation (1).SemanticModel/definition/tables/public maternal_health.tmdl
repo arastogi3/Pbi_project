@@ -1,0 +1,1005 @@
+table 'public maternal_health'
+	lineageTag: 735aac6f-537d-495c-b312-3209fe2e8969
+
+	column case_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ccc5e996-f071-474e-ae73-0e6ca2b06490
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_years_old
+		dataType: int64
+		formatString: 0
+		lineageTag: db6694ad-edf7-46e4-b566-c577adba62cb
+		summarizeBy: sum
+		sourceColumn: age_years_old
+
+		annotation SummarizationSetBy = Automatic
+
+	column color_ethnicity
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d6e5036-26b1-4af7-97c2-689eb58c20df
+		summarizeBy: sum
+		sourceColumn: color_ethnicity
+
+		annotation SummarizationSetBy = Automatic
+
+	column hypertension_past_reported
+		dataType: int64
+		formatString: 0
+		lineageTag: b03efe2e-a3b6-4494-bc18-4ec31dc2f50d
+		summarizeBy: sum
+		sourceColumn: hypertension_past_reported
+
+		annotation SummarizationSetBy = Automatic
+
+	column hypertension_past_treatment
+		dataType: string
+		lineageTag: 90817dcc-93e9-4039-bb08-ad38fa631de5
+		summarizeBy: none
+		sourceColumn: hypertension_past_treatment
+
+		annotation SummarizationSetBy = Automatic
+
+	column diabetes_mellitus_dm_reported
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d06a3ae-6808-4e3c-a46b-da5d87b005d6
+		summarizeBy: sum
+		sourceColumn: diabetes_mellitus_dm_reported
+
+		annotation SummarizationSetBy = Automatic
+
+	column diabetes_mellitus_disease_gap
+		dataType: string
+		lineageTag: 96b6771c-d627-4e87-b889-0f57ac2d592c
+		summarizeBy: none
+		sourceColumn: diabetes_mellitus_disease_gap
+
+		annotation SummarizationSetBy = Automatic
+
+	column diabetes_mellitus_treatment
+		dataType: string
+		lineageTag: 48714202-c696-4331-b002-96ff8da6d84a
+		summarizeBy: none
+		sourceColumn: diabetes_mellitus_treatment
+
+		annotation SummarizationSetBy = Automatic
+
+	column tobacco_use
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f02aeaf-48f0-4dab-9b1f-a46541ece413
+		summarizeBy: sum
+		sourceColumn: tobacco_use
+
+		annotation SummarizationSetBy = Automatic
+
+	column tobacco_use_in_months
+		dataType: string
+		lineageTag: 62e63ec6-50ec-4d97-a8e3-fa1690671633
+		summarizeBy: none
+		sourceColumn: tobacco_use_in_months
+
+		annotation SummarizationSetBy = Automatic
+
+	column tobacco_quantity_by_day
+		dataType: string
+		lineageTag: ccbd4e5c-04c8-4dd4-9e37-e684f243416e
+		summarizeBy: none
+		sourceColumn: tobacco_quantity_by_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column alcohol_use
+		dataType: int64
+		formatString: 0
+		lineageTag: 09271d55-4d49-4a55-83aa-b0bd2d480de8
+		summarizeBy: sum
+		sourceColumn: alcohol_use
+
+		annotation SummarizationSetBy = Automatic
+
+	column alcohol_quantity_milliliters
+		dataType: string
+		lineageTag: ebd84527-7369-46db-89b5-ed5cdbe061aa
+		summarizeBy: none
+		sourceColumn: alcohol_quantity_milliliters
+
+		annotation SummarizationSetBy = Automatic
+
+	column alcohol_preference
+		dataType: string
+		lineageTag: 28644b01-bf09-4daf-8f8a-6c019c9e2ca7
+		summarizeBy: none
+		sourceColumn: alcohol_preference
+
+		annotation SummarizationSetBy = Automatic
+
+	column drugs_preference
+		dataType: string
+		lineageTag: e0b547aa-210e-4fe1-a0b2-6f55657addbd
+		summarizeBy: none
+		sourceColumn: drugs_preference
+
+		annotation SummarizationSetBy = Automatic
+
+	column drugs_years_use
+		dataType: string
+		lineageTag: ce517d37-68eb-4cb5-a40a-a3d8e8b8bd13
+		summarizeBy: none
+		sourceColumn: drugs_years_use
+
+		annotation SummarizationSetBy = Automatic
+
+	column drugs_during_pregnancy
+		dataType: string
+		lineageTag: 3257fc92-6708-4d83-96de-8841fee2babd
+		summarizeBy: none
+		sourceColumn: drugs_during_pregnancy
+
+		annotation SummarizationSetBy = Automatic
+
+	column past_newborn_1_weight
+		dataType: string
+		lineageTag: f9186724-a77e-4baa-b1b0-1c42f30658e4
+		summarizeBy: none
+		sourceColumn: past_newborn_1_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column gestational_age_past_newborn_1
+		dataType: string
+		lineageTag: 9637c76f-d25c-4fb1-a7b5-d37e0728c9ec
+		summarizeBy: none
+		sourceColumn: gestational_age_past_newborn_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column past_newborn_2_weight
+		dataType: string
+		lineageTag: d89a182e-43b8-45bb-9227-405fc2709744
+		summarizeBy: none
+		sourceColumn: past_newborn_2_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column gestational_age_past_newborn_2
+		dataType: string
+		lineageTag: 344fdb0b-c01c-48ba-b72d-ae0b29af2d93
+		summarizeBy: none
+		sourceColumn: gestational_age_past_newborn_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column past_newborn_3_weight
+		dataType: string
+		lineageTag: 1d48893c-b177-47e5-b79e-8a7dedfb9aec
+		summarizeBy: none
+		sourceColumn: past_newborn_3_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column gestational_age_past_newborn_3
+		dataType: string
+		lineageTag: 27ffdcb1-4303-4d72-a047-576148f10e32
+		summarizeBy: none
+		sourceColumn: gestational_age_past_newborn_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column past_newborn_4_weight
+		dataType: string
+		lineageTag: db4d0de8-5a6b-4c97-9c71-2aa9bd584996
+		summarizeBy: none
+		sourceColumn: past_newborn_4_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column gestational_age_past_4_newborn
+		dataType: string
+		lineageTag: 4a2bd2a7-391f-48d4-8d51-61b4a55b8f1b
+		summarizeBy: none
+		sourceColumn: gestational_age_past_4_newborn
+
+		annotation SummarizationSetBy = Automatic
+
+	column breakfast_meal
+		dataType: int64
+		formatString: 0
+		lineageTag: 2786d720-3f3e-4492-9eee-0887c09dec02
+		summarizeBy: sum
+		sourceColumn: breakfast_meal
+
+		annotation SummarizationSetBy = Automatic
+
+	column morning_snack
+		dataType: int64
+		formatString: 0
+		lineageTag: ce332b8c-8d0a-4ba7-bd48-916ad14a2712
+		summarizeBy: sum
+		sourceColumn: morning_snack
+
+		annotation SummarizationSetBy = Automatic
+
+	column lunch_meal
+		dataType: int64
+		formatString: 0
+		lineageTag: a85da1e0-44df-44ef-8588-ed77d4945364
+		summarizeBy: sum
+		sourceColumn: lunch_meal
+
+		annotation SummarizationSetBy = Automatic
+
+	column afternoon_snack
+		dataType: int64
+		formatString: 0
+		lineageTag: 2cc66a1f-edaa-4594-b574-d19238118b4a
+		summarizeBy: sum
+		sourceColumn: afternoon_snack
+
+		annotation SummarizationSetBy = Automatic
+
+	column meal_dinner
+		dataType: int64
+		formatString: 0
+		lineageTag: 84f7c40c-7f34-4c20-b19a-6a0758adb7c3
+		summarizeBy: sum
+		sourceColumn: meal_dinner
+
+		annotation SummarizationSetBy = Automatic
+
+	column supper_meal
+		dataType: int64
+		formatString: 0
+		lineageTag: d5071b40-b27c-4e19-9f45-0a3450d8dc51
+		summarizeBy: sum
+		sourceColumn: supper_meal
+
+		annotation SummarizationSetBy = Automatic
+
+	column bean
+		dataType: int64
+		formatString: 0
+		lineageTag: 2bc5ce30-49db-440b-9010-582901dd03de
+		summarizeBy: sum
+		sourceColumn: bean
+
+		annotation SummarizationSetBy = Automatic
+
+	column fruits
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b23e07a-12f7-4218-8139-4c1df2238382
+		summarizeBy: sum
+		sourceColumn: fruits
+
+		annotation SummarizationSetBy = Automatic
+
+	column vegetables
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c9f3c59-2dbb-4c04-8290-0ae1b2579594
+		summarizeBy: sum
+		sourceColumn: vegetables
+
+		annotation SummarizationSetBy = Automatic
+
+	column embedded_food
+		dataType: int64
+		formatString: 0
+		lineageTag: 550a2678-643d-42eb-ad58-8b9a0eed090c
+		summarizeBy: sum
+		sourceColumn: embedded_food
+
+		annotation SummarizationSetBy = Automatic
+
+	column pasta
+		dataType: int64
+		formatString: 0
+		lineageTag: e14e0383-e00f-4bf3-a108-6d0b0f32f454
+		summarizeBy: sum
+		sourceColumn: pasta
+
+		annotation SummarizationSetBy = Automatic
+
+	column cookies
+		dataType: int64
+		formatString: 0
+		lineageTag: 281fb917-75ed-4d24-bb60-06d02e9b06a6
+		summarizeBy: sum
+		sourceColumn: cookies
+
+		annotation SummarizationSetBy = Automatic
+
+	column right_systolic_blood_pressure
+		dataType: string
+		lineageTag: 8ef67c46-fb25-4ce2-a67e-688ab8ec7730
+		summarizeBy: none
+		sourceColumn: right_systolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+	column right_diastolic_blood_pressure
+		dataType: string
+		lineageTag: 8fee725e-d2f3-4f30-8a4b-d37a0efc046c
+		summarizeBy: none
+		sourceColumn: right_diastolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+	column left_systolic_blood_pressure
+		dataType: string
+		lineageTag: 801bf6cd-e13b-4189-b90a-deec75e342a9
+		summarizeBy: none
+		sourceColumn: left_systolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+	column left_diastolic_blood_pressure
+		dataType: string
+		lineageTag: b1bd51f5-b9af-45c7-a15e-54ae98d21481
+		summarizeBy: none
+		sourceColumn: left_diastolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+	column periumbilical_subcutanous_fat
+		dataType: string
+		lineageTag: 5b1e39bb-430b-4c0f-b462-b5619a6ecc56
+		summarizeBy: none
+		sourceColumn: periumbilical_subcutanous_fat
+
+		annotation SummarizationSetBy = Automatic
+
+	column periumbilical_visceral_fat
+		dataType: string
+		lineageTag: af11cc02-36cf-451c-8a9f-f1c4137154e4
+		summarizeBy: none
+		sourceColumn: periumbilical_visceral_fat
+
+		annotation SummarizationSetBy = Automatic
+
+	column periumbilical_total_fat
+		dataType: string
+		lineageTag: 8493a514-4aa3-4faf-b1e1-5dfae7328ca4
+		summarizeBy: none
+		sourceColumn: periumbilical_total_fat
+
+		annotation SummarizationSetBy = Automatic
+
+	column preperitoneal_subcutaneous_fat
+		dataType: double
+		lineageTag: f5814f6c-e13a-491e-b79b-c65c6363545a
+		summarizeBy: sum
+		sourceColumn: preperitoneal_subcutaneous_fat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column preperitoneal_visceral_fat
+		dataType: double
+		lineageTag: 49663edc-322d-436e-9ff9-2b2ab35b704d
+		summarizeBy: sum
+		sourceColumn: preperitoneal_visceral_fat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gestational_age_at_inclusion
+		dataType: double
+		lineageTag: aaea32ee-1a47-4018-b6f2-38fc2e375bb7
+		summarizeBy: sum
+		sourceColumn: gestational_age_at_inclusion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fetal_weight_at_ultrasound
+		dataType: string
+		lineageTag: 648c8065-c158-4c95-a281-1fe42b7fc775
+		summarizeBy: none
+		sourceColumn: fetal_weight_at_ultrasound
+
+		annotation SummarizationSetBy = Automatic
+
+	column weight_fetal_percentile
+		dataType: string
+		lineageTag: 0820867a-b7a3-4f47-ad95-3704510e3995
+		summarizeBy: none
+		sourceColumn: weight_fetal_percentile
+
+		annotation SummarizationSetBy = Automatic
+
+	column past_pregnancies_number
+		dataType: string
+		lineageTag: 8187308b-3c87-4b59-af91-4e7ae141d0ab
+		summarizeBy: none
+		sourceColumn: past_pregnancies_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column miscarriage
+		dataType: int64
+		formatString: 0
+		lineageTag: 78e03e42-44e7-4bb4-9bc8-6fdf54d669b3
+		summarizeBy: sum
+		sourceColumn: miscarriage
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_trimester_hematocrit
+		dataType: double
+		lineageTag: 28420b0b-dbb4-4da1-a6c5-8908dba427cd
+		summarizeBy: sum
+		sourceColumn: first_trimester_hematocrit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column second_trimester_hematocrit
+		dataType: string
+		lineageTag: 0f5a15be-af78-4229-b142-4b90e11ed630
+		summarizeBy: none
+		sourceColumn: second_trimester_hematocrit
+
+		annotation SummarizationSetBy = Automatic
+
+	column third_trimester_hematocrit
+		dataType: string
+		lineageTag: 18d785b3-dd05-4d3f-a5eb-4c6cccf727b3
+		summarizeBy: none
+		sourceColumn: third_trimester_hematocrit
+
+		annotation SummarizationSetBy = Automatic
+
+	column firt_trimester_hemoglobin
+		dataType: double
+		lineageTag: 8bf98e56-7d1b-4bb4-b4b7-dc8823a06350
+		summarizeBy: sum
+		sourceColumn: firt_trimester_hemoglobin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column second_trimester_hemoglobin
+		dataType: string
+		lineageTag: f77ab198-8831-4286-b83f-44db827a4426
+		summarizeBy: none
+		sourceColumn: second_trimester_hemoglobin
+
+		annotation SummarizationSetBy = Automatic
+
+	column third_trimester_hemoglobin
+		dataType: string
+		lineageTag: ca412a6c-ceef-4d7a-87e3-7b92914bd21f
+		summarizeBy: none
+		sourceColumn: third_trimester_hemoglobin
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_tri_fasting_blood_glucose
+		dataType: int64
+		formatString: 0
+		lineageTag: cdd7e967-544b-49ce-a825-520655c269b3
+		summarizeBy: sum
+		sourceColumn: first_tri_fasting_blood_glucose
+
+		annotation SummarizationSetBy = Automatic
+
+	column second_tri_fasting_blood_glucose
+		dataType: string
+		lineageTag: 4f592ee4-eaff-4469-b183-2dcb06e615c0
+		summarizeBy: none
+		sourceColumn: second_tri_fasting_blood_glucose
+
+		annotation SummarizationSetBy = Automatic
+
+	column third_tri_fasting_blood_glucose
+		dataType: string
+		lineageTag: 61b1f933-8540-4210-ad64-307b65a6790c
+		summarizeBy: none
+		sourceColumn: third_tri_fasting_blood_glucose
+
+		annotation SummarizationSetBy = Automatic
+
+	column 1st_hour_ogtt75_1st_tri
+		dataType: string
+		lineageTag: cca062ae-01ae-4393-860e-c82e39547228
+		summarizeBy: none
+		sourceColumn: 1st_hour_ogtt75_1st_tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column 1st_hour_ogtt75_2tri
+		dataType: string
+		lineageTag: 8ec8b2b9-f8ab-4c42-8c2c-5a33929b0851
+		summarizeBy: none
+		sourceColumn: 1st_hour_ogtt75_2tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column 1st_hour_ogtt75_3tri
+		dataType: string
+		lineageTag: 19b866a6-f957-443f-bed1-77d411f40133
+		summarizeBy: none
+		sourceColumn: 1st_hour_ogtt75_3tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2nd_hour_ogtt_1tri
+		dataType: string
+		lineageTag: 6d3a369b-f37e-4ffd-a2a3-df655cda4f71
+		summarizeBy: none
+		sourceColumn: 2nd_hour_ogtt_1tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2nd_hour_ogtt75_2tri
+		dataType: string
+		lineageTag: 47cee73c-e53e-44fa-a97f-c85c28ed10b2
+		summarizeBy: none
+		sourceColumn: 2nd_hour_ogtt75_2tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2nd_hour_ogtt_3tri
+		dataType: string
+		lineageTag: c7489745-8275-456e-b93a-dea46c44388b
+		summarizeBy: none
+		sourceColumn: 2nd_hour_ogtt_3tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column hiv_1tri
+		dataType: string
+		lineageTag: ba60e2db-1977-4ab7-aaab-c065f3aacd6e
+		summarizeBy: none
+		sourceColumn: hiv_1tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column syphilis_1tri
+		dataType: string
+		lineageTag: 29ca0d04-701b-45ed-a584-639de5d0bf81
+		summarizeBy: none
+		sourceColumn: syphilis_1tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column c_hepatitis_1tri
+		dataType: string
+		lineageTag: e9685c9d-e1c7-4bb2-ae3b-31fd0e8f1da4
+		summarizeBy: none
+		sourceColumn: c_hepatitis_1tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column prepregnant_weight
+		dataType: string
+		lineageTag: 858d9227-86da-4ec9-8915-7c93953c0202
+		summarizeBy: none
+		sourceColumn: prepregnant_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column prepregnant_bmi
+		dataType: string
+		lineageTag: fc16488d-5535-4b61-8249-f430f12d29a6
+		summarizeBy: none
+		sourceColumn: prepregnant_bmi
+
+		annotation SummarizationSetBy = Automatic
+
+	column bmi_according_who
+		dataType: string
+		lineageTag: c18d7a27-e97e-44fe-9838-65e10a010f40
+		summarizeBy: none
+		sourceColumn: bmi_according_who
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_maternal_weight_1st_tri
+		dataType: string
+		lineageTag: ce925bcd-6ced-4cd5-a066-f7399a32347d
+		summarizeBy: none
+		sourceColumn: current_maternal_weight_1st_tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_maternal_weight_2nd_tri
+		dataType: string
+		lineageTag: fd6849b3-29d1-4357-b6e6-62d40409429a
+		summarizeBy: none
+		sourceColumn: current_maternal_weight_2nd_tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_maternal_weight_3rd_tri
+		dataType: string
+		lineageTag: 5392d912-f918-4360-807e-26b213b5016b
+		summarizeBy: none
+		sourceColumn: current_maternal_weight_3rd_tri
+
+		annotation SummarizationSetBy = Automatic
+
+	column maternal_weight_at_inclusion
+		dataType: double
+		lineageTag: 4ba577b2-b90d-4c8a-980f-2d73f9a18099
+		summarizeBy: sum
+		sourceColumn: maternal_weight_at_inclusion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hight_at_inclusion
+		dataType: double
+		lineageTag: 4069b5b4-3519-4b5f-9392-51e4f6c46dbd
+		summarizeBy: sum
+		sourceColumn: hight_at_inclusion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column current_bmi
+		dataType: double
+		lineageTag: 53b85776-c1ed-490c-ae07-b3a4e163af04
+		summarizeBy: sum
+		sourceColumn: current_bmi
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column current_bmi_according_who
+		dataType: int64
+		formatString: 0
+		lineageTag: b1e50e5a-ab61-4ee6-b1cd-e60a17674809
+		summarizeBy: sum
+		sourceColumn: current_bmi_according_who
+
+		annotation SummarizationSetBy = Automatic
+
+	column ultrasound_gestational_age
+		dataType: double
+		lineageTag: 551f4303-c199-41cd-85e4-adf5116d11c1
+		summarizeBy: sum
+		sourceColumn: ultrasound_gestational_age
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maternal_brachial_circumference
+		dataType: double
+		lineageTag: fecd26e7-a0fd-4d84-bfaa-c8841732e993
+		summarizeBy: sum
+		sourceColumn: maternal_brachial_circumference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column circumference_maternal_calf
+		dataType: double
+		lineageTag: 6d960978-cef5-41fb-943e-9f8dc6247ebc
+		summarizeBy: sum
+		sourceColumn: circumference_maternal_calf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maternal_neck_circumference
+		dataType: double
+		lineageTag: a33ec1e0-29ac-4ee1-9d58-9ad26d637da0
+		summarizeBy: sum
+		sourceColumn: maternal_neck_circumference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maternal_hip_circumference
+		dataType: double
+		lineageTag: 49831aa4-4840-4dba-ad59-0b0bcf4afadb
+		summarizeBy: sum
+		sourceColumn: maternal_hip_circumference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maternal_waist_circumference
+		dataType: double
+		lineageTag: 9327d359-d9fb-4ca0-b789-d4e667dcaea0
+		summarizeBy: sum
+		sourceColumn: maternal_waist_circumference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_tricciptal_skinfold
+		dataType: double
+		lineageTag: f76f7bd4-0aac-4ccb-a2c9-4bf342b0c3c1
+		summarizeBy: sum
+		sourceColumn: mean_tricciptal_skinfold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_subscapular_skinfold
+		dataType: double
+		lineageTag: be8a7649-0b68-49ff-8ae5-f1b121a0e1e8
+		summarizeBy: sum
+		sourceColumn: mean_subscapular_skinfold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_supra_iliac_skin_fold
+		dataType: double
+		lineageTag: 772fc7af-158e-482a-9bda-b90805cff3e4
+		summarizeBy: sum
+		sourceColumn: mean_supra_iliac_skin_fold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gestational_age_at_birth
+		dataType: double
+		lineageTag: ad588cf4-2485-424a-a9eb-f7dfcd5ff3fb
+		summarizeBy: sum
+		sourceColumn: gestational_age_at_birth
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prepartum_maternal_weight
+		dataType: string
+		lineageTag: bf0202cf-7dc2-41d3-8479-5bb62633d4e2
+		summarizeBy: none
+		sourceColumn: prepartum_maternal_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column prepartum_maternal_heigh
+		dataType: string
+		lineageTag: 4150fce4-2f8f-4079-b475-06f2dea34977
+		summarizeBy: none
+		sourceColumn: prepartum_maternal_heigh
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_mode
+		dataType: int64
+		formatString: 0
+		lineageTag: e06dd417-c67d-4c9e-8f04-a6a86cb320f5
+		summarizeBy: sum
+		sourceColumn: delivery_mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column cesarean_section_reason
+		dataType: string
+		lineageTag: e89c5b9c-157f-4063-a0f5-31ad62a31cf2
+		summarizeBy: none
+		sourceColumn: cesarean_section_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column hospital_systolic_blood_pressure
+		dataType: string
+		lineageTag: 65deeb88-8639-44d7-bd50-0dee6d043414
+		summarizeBy: none
+		sourceColumn: hospital_systolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+	column hospital_diastolic_blood_pressure
+		dataType: string
+		lineageTag: d611d5a3-d559-4dc7-a7b6-71b9f6a2d699
+		summarizeBy: none
+		sourceColumn: hospital_diastolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+	column hospital_hypertension
+		dataType: int64
+		formatString: 0
+		lineageTag: 51905006-d988-4944-bdcc-a26ebe49294c
+		summarizeBy: sum
+		sourceColumn: hospital_hypertension
+
+		annotation SummarizationSetBy = Automatic
+
+	column preeclampsia_record_pregnancy
+		dataType: int64
+		formatString: 0
+		lineageTag: b1bffed4-f721-435b-8c41-d2d48a26ebdc
+		summarizeBy: sum
+		sourceColumn: preeclampsia_record_pregnancy
+
+		annotation SummarizationSetBy = Automatic
+
+	column gestational_diabetes_mellitus
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ad410d1-27d4-4e88-8645-ef1e28b4a9ab
+		summarizeBy: sum
+		sourceColumn: gestational_diabetes_mellitus
+
+		annotation SummarizationSetBy = Automatic
+
+	column chronic_diabetes
+		dataType: string
+		lineageTag: 4aa21987-7552-4210-bfc1-409d26a7cb15
+		summarizeBy: none
+		sourceColumn: chronic_diabetes
+
+		annotation SummarizationSetBy = Automatic
+
+	column chronic_diseases
+		dataType: string
+		lineageTag: 2065949c-c96d-48d4-99be-3c6f0f500e92
+		summarizeBy: none
+		sourceColumn: chronic_diseases
+
+		annotation SummarizationSetBy = Automatic
+
+	column disease_diagnose_during_pregnancy
+		dataType: string
+		lineageTag: a4ba870e-9f38-4c42-8864-3a667c260d9e
+		summarizeBy: none
+		sourceColumn: disease_diagnose_during_pregnancy
+
+		annotation SummarizationSetBy = Automatic
+
+	column treatment_disease_pregnancy
+		dataType: string
+		lineageTag: 881eebe3-a5c3-455c-b3a6-66b293fa870e
+		summarizeBy: none
+		sourceColumn: treatment_disease_pregnancy
+
+		annotation SummarizationSetBy = Automatic
+
+	column number_prenatal_appointments
+		dataType: string
+		lineageTag: 152d876f-54ea-4e95-8d91-c4fbfec60b29
+		summarizeBy: none
+		sourceColumn: number_prenatal_appointments
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_weight_for_the_newborn
+		dataType: string
+		lineageTag: 36b51ca8-300a-4f6b-97ce-04add0fc1d5c
+		summarizeBy: none
+		sourceColumn: expected_weight_for_the_newborn
+
+		annotation SummarizationSetBy = Automatic
+
+	column newborn_weight
+		dataType: string
+		lineageTag: 19becd1d-ed7b-4676-8d1d-06fac05cd8c4
+		summarizeBy: none
+		sourceColumn: newborn_weight
+
+		annotation SummarizationSetBy = Automatic
+
+	column newborn_height
+		dataType: string
+		lineageTag: 00e962a8-8685-4f9a-923c-5fc12c6bddec
+		summarizeBy: none
+		sourceColumn: newborn_height
+
+		annotation SummarizationSetBy = Automatic
+
+	column newborn_head_circumference
+		dataType: string
+		lineageTag: 89bafc51-f78d-4cb1-a837-6a3edf29c01b
+		summarizeBy: none
+		sourceColumn: newborn_head_circumference
+
+		annotation SummarizationSetBy = Automatic
+
+	column thoracic_perimeter_newborn
+		dataType: double
+		lineageTag: c28e5b1a-cc28-4f30-a554-d4d7d8369f76
+		summarizeBy: sum
+		sourceColumn: thoracic_perimeter_newborn
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column meconium_labor
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e5a4da2-9774-4932-bf44-796ec91038ea
+		summarizeBy: sum
+		sourceColumn: meconium_labor
+
+		annotation SummarizationSetBy = Automatic
+
+	column apgar_1st_min
+		dataType: int64
+		formatString: 0
+		lineageTag: 073f44c8-4c59-4660-a601-5dd1cc8fd051
+		summarizeBy: sum
+		sourceColumn: apgar_1st_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column apgar_5th_min
+		dataType: int64
+		formatString: 0
+		lineageTag: f46b25ae-24ff-4c5b-82d0-ed3cfa9c1c7d
+		summarizeBy: sum
+		sourceColumn: apgar_5th_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column pediatric_resuscitation_maneuvers
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c3f6488-086b-43d6-bdaa-04794994dad1
+		summarizeBy: sum
+		sourceColumn: pediatric_resuscitation_maneuvers
+
+		annotation SummarizationSetBy = Automatic
+
+	column newborn_intubation
+		dataType: int64
+		formatString: 0
+		lineageTag: 88d79f44-6419-4220-a3dd-b0e60fe96b74
+		summarizeBy: sum
+		sourceColumn: newborn_intubation
+
+		annotation SummarizationSetBy = Automatic
+
+	column newborn_airway_aspiration
+		dataType: int64
+		formatString: 0
+		lineageTag: 0812125b-c536-4e25-a7a1-80f7490f9286
+		summarizeBy: sum
+		sourceColumn: newborn_airway_aspiration
+
+		annotation SummarizationSetBy = Automatic
+
+	column mothers_hospital_stay
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e11c29c-dbc5-4a77-9f08-7ee3c0ba2abe
+		summarizeBy: sum
+		sourceColumn: mothers_hospital_stay
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public maternal_health' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "Project_MH"),
+				    public_maternal_health = Source{[Schema="public",Item="maternal_health"]}[Data]
+				in
+				    public_maternal_health
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,404 @@
+table 'public ultrasound_results'
+	lineageTag: a6f4e943-c003-4ab4-816a-d6752a6c0a63
+
+	measure 'Total Maternal Fat' = ```
+			
+			SUM('public ultrasound_results'[periumbilical_total_fat]) +
+			SUM('public ultrasound_results'[preperitoneal_total_fat])
+			
+			
+			
+			```
+		lineageTag: 7fc53398-95ce-418b-8c3d-8c1d6e3ef5ab
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CountofCaseID = count('public ultrasound_results'[case_id])
+		formatString: 0
+		lineageTag: 8903aecd-a53e-4f0c-a96d-15af7385644c
+
+	measure FT_preperitoneal = SUMX('public ultrasound_results', 'public ultrasound_results'[preperitoneal_visceral_fat]+'public ultrasound_results'[preperitoneal_subcutaneous_fat])
+		lineageTag: 11ad95ac-a46b-4c59-932c-923fad4dfeb7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Patient_Count = ```
+			
+			COUNTAX(
+			    FILTER(
+			        'public ultrasound_results', 
+			        NOT(ISBLANK('public ultrasound_results'[FT_preperitoneal]))
+			    ), 
+			    'public ultrasound_results'[FT_preperitoneal]
+			)
+			```
+		formatString: 0
+		lineageTag: f4604baf-a3d1-41a3-b68f-7010fd691f7b
+
+	column case_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 326a90f6-359e-482f-b18a-74dd0b533ccb
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column periumbilical_subcutanous_fat
+		dataType: double
+		lineageTag: 806f3f3a-958b-467c-b2b0-abd46a410af7
+		summarizeBy: sum
+		sourceColumn: periumbilical_subcutanous_fat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periumbilical_visceral_fat
+		dataType: double
+		lineageTag: 441d3b70-adb0-4e62-b177-b1e6abfd96c3
+		summarizeBy: sum
+		sourceColumn: periumbilical_visceral_fat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column periumbilical_total_fat
+		dataType: double
+		lineageTag: bf3c35db-1302-4dfc-8280-5f22a85c589b
+		summarizeBy: sum
+		sourceColumn: periumbilical_total_fat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column preperitoneal_subcutaneous_fat
+		dataType: double
+		lineageTag: 9e37e8ed-2fc7-4fd2-ae91-61cf52d2819b
+		summarizeBy: sum
+		sourceColumn: preperitoneal_subcutaneous_fat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column preperitoneal_visceral_fat
+		dataType: double
+		lineageTag: 52a62ea6-b819-40e3-a041-e4a9d21458fe
+		summarizeBy: sum
+		sourceColumn: preperitoneal_visceral_fat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gestational_age_at_inclusion
+		dataType: double
+		lineageTag: fb65867a-5204-40cd-a27e-a66033d47755
+		summarizeBy: sum
+		sourceColumn: gestational_age_at_inclusion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fetal_weight_at_ultrasound
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ad3c3a3-99f7-442a-9e3f-485b4905efea
+		summarizeBy: sum
+		sourceColumn: fetal_weight_at_ultrasound
+
+		annotation SummarizationSetBy = Automatic
+
+	column weight_fetal_percentile
+		dataType: string
+		lineageTag: 1efee1e2-a283-4ccd-b6ab-4402ea023f0f
+		summarizeBy: none
+		sourceColumn: weight_fetal_percentile
+
+		annotation SummarizationSetBy = Automatic
+
+	column ultrasound_gestational_age
+		dataType: double
+		lineageTag: 871d30fe-a0c6-435b-99fd-cdfd0445fba9
+		summarizeBy: sum
+		sourceColumn: ultrasound_gestational_age
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column preperitoneal_total_fat
+		dataType: double
+		lineageTag: 94b7b237-6ff7-4893-a388-0e7fb6034aaa
+		summarizeBy: sum
+		sourceColumn: preperitoneal_total_fat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"public ultrasound_results","TableItemName":"preperitoneal_total_fat (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column periumbilical_vft_sft_ratio
+		dataType: double
+		lineageTag: cd012ed3-dced-4caa-9413-3ab230293a4a
+		summarizeBy: sum
+		sourceColumn: periumbilical_vft_sft_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column preperitoneal_vft_sft_ratio
+		dataType: double
+		lineageTag: 4300a0d4-424a-46a7-a457-d1e4e5149de4
+		summarizeBy: sum
+		sourceColumn: preperitoneal_vft_sft_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column weight_percentile
+		dataType: int64
+		formatString: 0
+		lineageTag: 00dec257-4985-4368-bd37-2defe39d9f31
+		summarizeBy: sum
+		sourceColumn: weight_percentile
+
+		annotation SummarizationSetBy = Automatic
+
+	column weight_percentile_group
+		dataType: string
+		lineageTag: bea8cc69-419d-435b-8f1f-4ff8ec8f2d16
+		summarizeBy: none
+		sourceColumn: weight_percentile_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Fat = 'public ultrasound_results'[periumbilical_total_fat]+'public ultrasound_results'[preperitoneal_total_fat]
+		lineageTag: 8cbb64f3-b5bb-4869-9374-89f7b51c2d7b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Abdominal Fat' = IF(NOT(ISBLANK('public ultrasound_results'[periumbilical_total_fat])) , 'public ultrasound_results'[preperitoneal_total_fat]+'public ultrasound_results'[periumbilical_total_fat],BLANK())
+		lineageTag: 676b75a6-fb01-4d2a-927b-c3ee3e7f0197
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Fetal weight percentile' = FORMAT('public ultrasound_results'[weight_fetal_percentile], "0") & "%"
+		lineageTag: dab277e1-cf3d-413a-95aa-85ca8f18a7d7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Combined_VFT_SFT_Ratio_Category = ```
+			
+			SWITCH(
+			    TRUE(),
+			    ('public ultrasound_results'[periumbilical_vft_sft_ratio] + 'public ultrasound_results'[preperitoneal_vft_sft_ratio]) / 2 < 1.0 
+			        && NOT(ISBLANK('public ultrasound_results'[periumbilical_vft_sft_ratio])), "Low Fat Ratio",
+			    ('public ultrasound_results'[periumbilical_vft_sft_ratio] + 'public ultrasound_results'[preperitoneal_vft_sft_ratio]) / 2 >= 1.0 
+			        && ('public ultrasound_results'[periumbilical_vft_sft_ratio] + 'public ultrasound_results'[preperitoneal_vft_sft_ratio]) / 2 <= 1.5 
+			        && NOT(ISBLANK('public ultrasound_results'[periumbilical_vft_sft_ratio])), "Normal Fat Ratio",
+			    ('public ultrasound_results'[periumbilical_vft_sft_ratio] + 'public ultrasound_results'[preperitoneal_vft_sft_ratio]) / 2 > 1.5 
+			        && NOT(ISBLANK('public ultrasound_results'[periumbilical_vft_sft_ratio])), "High Fat Ratio",
+			    BLANK() -- Optional: Default value if data is missing
+			)
+			```
+		lineageTag: b02fff60-ebfd-4d60-9680-a6b32b1f0d85
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Combined_VFT_SFT_Ratio = ('public ultrasound_results'[periumbilical_vft_sft_ratio] + 'public ultrasound_results'[preperitoneal_vft_sft_ratio])/2
+		lineageTag: 3bdbe68d-d9f2-460b-9b7a-c16e08cee4c0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Periumbilical_VFT_SFT_Ratio_Category = ```
+			
+			SWITCH(
+			    TRUE(),
+			    ('public ultrasound_results'[periumbilical_vft_sft_ratio] )  < 1.0 
+			        && NOT(ISBLANK('public ultrasound_results'[periumbilical_vft_sft_ratio])), "Low Fat Ratio",
+			    ('public ultrasound_results'[periumbilical_vft_sft_ratio])  >= 1.0 
+			        && ('public ultrasound_results'[periumbilical_vft_sft_ratio])  <= 1.5 
+			        && NOT(ISBLANK('public ultrasound_results'[periumbilical_vft_sft_ratio])), "Normal Fat Ratio",
+			    ('public ultrasound_results'[periumbilical_vft_sft_ratio] ) > 1.5 
+			        && NOT(ISBLANK('public ultrasound_results'[periumbilical_vft_sft_ratio])), "High Fat Ratio",
+			    BLANK() -- Optional: Default value if data is missing
+			)
+			```
+		lineageTag: 43463138-cbf4-437d-8062-a3ba13b5cea0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Preperitoneal_VFT_SFT_Ratio_Category = ```
+			
+			SWITCH(
+			    TRUE(),
+			    ('public ultrasound_results'[preperitoneal_vft_sft_ratio] )  < 1.0 
+			        && NOT(ISBLANK('public ultrasound_results'[preperitoneal_vft_sft_ratio])), "Low Fat Ratio",
+			    ('public ultrasound_results'[preperitoneal_vft_sft_ratio])  >= 1.0 
+			        && ('public ultrasound_results'[preperitoneal_vft_sft_ratio])  <= 1.5 
+			        && NOT(ISBLANK('public ultrasound_results'[preperitoneal_vft_sft_ratio])), "Normal Fat Ratio",
+			    ('public ultrasound_results'[preperitoneal_vft_sft_ratio] ) > 1.5 
+			        && NOT(ISBLANK('public ultrasound_results'[preperitoneal_vft_sft_ratio])), "High Fat Ratio",
+			    BLANK() -- Optional: Default value if data is missing
+			)
+			```
+		lineageTag: 2ae45fd2-aa99-4f0d-8b8f-c519f948dc53
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Periumbilical VSR Category' = IF('public ultrasound_results'[periumbilical_vft_sft_ratio] <0.4, "Low",IF('public ultrasound_results'[periumbilical_vft_sft_ratio]>=0.4 && 'public ultrasound_results'[periumbilical_vft_sft_ratio]<=0.5,"Normal", "High"))
+		lineageTag: 5d18d08f-9779-41a5-8a24-6d1d0804700d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'preperitoneal_total_fat (bins)' =
+			IF(
+				ISBLANK('public ultrasound_results'[preperitoneal_total_fat]),
+				BLANK(),
+				IF(
+					'public ultrasound_results'[preperitoneal_total_fat] >= 0,
+					ROUNDDOWN('public ultrasound_results'[preperitoneal_total_fat] / 10, 0) * 10,
+					ROUNDUP('public ultrasound_results'[preperitoneal_total_fat] / 10, 0) * 10
+				)
+			)
+		lineageTag: 3c083100-d607-4735-b307-08ead658bd31
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "public ultrasound_results"
+				          }
+				        },
+				        "Property": "preperitoneal_total_fat"
+				      }
+				    }
+				  ],
+				  "binningMetadata": {
+				    "binSize": {
+				      "value": 10.0,
+				      "unit": 0
+				    }
+				  }
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"p","Entity":"public ultrasound_results"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"preperitoneal_total_fat"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"p"}},"Property":"preperitoneal_total_fat"}},"Size":10.0}}}}
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VATThicknessCategory =
+			
+			SWITCH(
+			    TRUE(),
+			    ISBLANK('public ultrasound_results'[VATThickness]), "Blank",
+			    'public ultrasound_results'[VATThickness] < 10, "Low Risk",
+			    'public ultrasound_results'[VATThickness] >= 10 && 'public ultrasound_results'[VATThickness] < 15, "Low-Moderate Risk",
+			    'public ultrasound_results'[VATThickness] >= 15 && 'public ultrasound_results'[VATThickness] < 20, "Moderate Risk",
+			    'public ultrasound_results'[VATThickness] >= 20, "High Risk"
+			)
+		lineageTag: 3d871cdd-33eb-41f2-b44e-0fbd4f78327e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column VATThickness =
+			IF(ISBLANK('public ultrasound_results'[TotalFAT])&&ISBLANK('public ultrasound_results'[SubCutaneousFAT]),BLANK(),
+			'public ultrasound_results'[TotalFAT]-'public ultrasound_results'[SubCutaneousFAT])
+		lineageTag: 9786c51f-371d-4acb-afdf-0c903ed5187f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalFAT =
+			IF(ISBLANK('public ultrasound_results'[FAT_periumbilical])&&ISBLANK('public ultrasound_results'[FAT_preperitoneal]),BLANK(),
+			('public ultrasound_results'[FAT_periumbilical]+'public ultrasound_results'[FAT_preperitoneal])/2)
+		lineageTag: 04fa4eef-a3c7-423c-ae78-a849fa486a07
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubCutaneousFAT =
+			IF(ISBLANK('public ultrasound_results'[periumbilical_subcutanous_fat])||ISBLANK('public ultrasound_results'[preperitoneal_subcutaneous_fat]),BLANK(),
+			'public ultrasound_results'[periumbilical_subcutanous_fat]+'public ultrasound_results'[preperitoneal_subcutaneous_fat])
+		lineageTag: 6e9d6601-dc3d-4d54-bd92-5050aaaf8c42
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FAT_periumbilical =
+			IF(ISBLANK('public ultrasound_results'[periumbilical_subcutanous_fat])||
+			ISBLANK('public ultrasound_results'[periumbilical_visceral_fat]),BLANK(),
+			'public ultrasound_results'[periumbilical_subcutanous_fat]+'public ultrasound_results'[periumbilical_visceral_fat])
+		lineageTag: a78202d1-b342-444d-afe4-492376e3e844
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FAT_preperitoneal =
+			IF(ISBLANK('public ultrasound_results'[preperitoneal_subcutaneous_fat])||
+			ISBLANK('public ultrasound_results'[preperitoneal_visceral_fat]),BLANK(),
+			'public ultrasound_results'[preperitoneal_subcutaneous_fat]+'public ultrasound_results'[preperitoneal_visceral_fat])
+		lineageTag: f7829895-da72-43c8-837e-ed3f6e041a6b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Preperitoneal_Fat_Category =
+			
+			SWITCH(
+			    TRUE(),
+			    'public ultrasound_results'[FT_preperitoneal] < 5, "Low",
+			    'public ultrasound_results'[FT_preperitoneal] >= 5 && 'public ultrasound_results'[FT_preperitoneal] < 10, "Normal",
+			    'public ultrasound_results'[FT_preperitoneal] >= 10, "High"
+			)
+		lineageTag: 16c2cf4f-7b19-497a-a089-1580ba178f85
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public ultrasound_results' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "Project_MH"),
+				    public_ultrasound_results = Source{[Schema="public",Item="ultrasound_results"]}[Data]
+				in
+				    public_ultrasound_results
+
+	annotation PBI_ResultType = Table
+

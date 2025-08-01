@@ -1,0 +1,176 @@
+table 'public anthropometry'
+	lineageTag: 775fd6f7-2cea-4a67-89c3-3941b6e8090d
+
+	measure Measure
+		lineageTag: bfd5ea4e-47da-40c5-9754-7943281c6198
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	column case_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 9a85672d-70fb-4c21-8365-524de6fa58cf
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column maternal_brachial_circumference
+		dataType: double
+		lineageTag: 062ca993-668e-4de2-94d5-07cfd42c4c21
+		summarizeBy: sum
+		sourceColumn: maternal_brachial_circumference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column circumference_maternal_calf
+		dataType: double
+		lineageTag: f959a6cf-7a2b-4e26-85db-821b327c252a
+		summarizeBy: sum
+		sourceColumn: circumference_maternal_calf
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maternal_neck_circumference
+		dataType: double
+		lineageTag: 04c14c4c-53ea-4d20-87eb-5e01989a0dba
+		summarizeBy: sum
+		sourceColumn: maternal_neck_circumference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maternal_waist_circumference
+		dataType: double
+		lineageTag: d583df5f-686e-4d52-959b-61ab7894c258
+		summarizeBy: sum
+		sourceColumn: maternal_waist_circumference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column maternal_hip_circumference
+		dataType: double
+		lineageTag: 47359661-9146-4280-b993-a09800166cb7
+		summarizeBy: sum
+		sourceColumn: maternal_hip_circumference
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_tricciptal_skinfold
+		dataType: double
+		lineageTag: 3c59cce5-4bc1-4f84-b4d4-3e5fb2758225
+		summarizeBy: sum
+		sourceColumn: mean_tricciptal_skinfold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_subscapular_skinfold
+		dataType: double
+		lineageTag: 2fcd7ae8-e0bf-43c9-aef9-f43dc47e0e8d
+		summarizeBy: sum
+		sourceColumn: mean_subscapular_skinfold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_supra_iliac_skin_fold
+		dataType: double
+		lineageTag: 208feeed-5117-4643-8324-51c1c35fd4c6
+		summarizeBy: sum
+		sourceColumn: mean_supra_iliac_skin_fold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WaistHipRatio = DIVIDE ( 'public anthropometry'[maternal_waist_circumference],'public anthropometry'[maternal_hip_circumference],0)
+		lineageTag: 117180e2-3b31-4a98-9468-330c03d9ab24
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Skinfold Thickness' = 'public anthropometry'[mean_subscapular_skinfold]+ 'public anthropometry'[mean_supra_iliac_skin_fold] + 'public anthropometry'[mean_tricciptal_skinfold]
+		lineageTag: 35e3b884-6c14-4877-884b-9d596ed14e37
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Waist/hip_Ratio = IF(('public anthropometry'[maternal_waist_circumference]/'public anthropometry'[maternal_hip_circumference])< 0.85,"Normal ", "Abnormal ")
+		lineageTag: 8038117b-3219-4dca-a407-f9ec8665477e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column BodyFatPerc_SkinfoldCat =
+			IF(ISBLANK('public anthropometry'[BodyFatPerc_Skinfold]),BLANK(),
+			IF('public anthropometry'[BodyFatPerc_Skinfold]>=25 &&
+			'public anthropometry'[BodyFatPerc_Skinfold]<=31,"Normal",
+			IF('public anthropometry'[BodyFatPerc_Skinfold]<25,"Low","High")))
+		lineageTag: 325f6816-2ff8-46b9-8a10-f48bb445a285
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column BodyFatPerc_Skinfold =
+			(0.41563*('public anthropometry'[mean_tricciptal_skinfold]+'public anthropometry'[mean_subscapular_skinfold]+'public anthropometry'[mean_supra_iliac_skin_fold]))-
+			(0.00112*('public anthropometry'[mean_tricciptal_skinfold]+'public anthropometry'[mean_subscapular_skinfold]+'public anthropometry'[mean_supra_iliac_skin_fold])*
+			('public anthropometry'[mean_tricciptal_skinfold]+'public anthropometry'[mean_subscapular_skinfold]+'public anthropometry'[mean_supra_iliac_skin_fold]))+
+			(0.03661*RELATED('public demographics'[age_years_old]))+4.03653
+		lineageTag: 99e447ec-6dee-4124-be4b-a403d0ff76a8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Body_Fat_Percentage = ```
+			
+			VAR Waist_Hip_Neck_Sum = 
+			    'public anthropometry'[maternal_waist_circumference] + 
+			    'public anthropometry'[maternal_hip_circumference] - 
+			    'public anthropometry'[maternal_neck_circumference]
+			VAR Height = RELATED('public bmi_metrics'[hight_at_inclusion])
+			RETURN 
+			    IF(
+			        NOT(ISBLANK(Waist_Hip_Neck_Sum)) && Waist_Hip_Neck_Sum > 0 && NOT(ISBLANK(Height)),
+			        ROUND(
+			            (163.205 * LOG10(Waist_Hip_Neck_Sum) - 
+			             97.684 * LOG10(Height) - 
+			             60) / 100, 
+			            2
+			        ),
+			        BLANK())
+			```
+		formatString: 0.00
+		lineageTag: cbd3713e-2f0f-460b-b908-e43a0d12b15e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public anthropometry' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "Project_MH"),
+				    public_anthropometry = Source{[Schema="public",Item="anthropometry"]}[Data]
+				in
+				    public_anthropometry
+
+	annotation PBI_ResultType = Table
+

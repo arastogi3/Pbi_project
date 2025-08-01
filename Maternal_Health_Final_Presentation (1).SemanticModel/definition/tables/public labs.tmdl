@@ -1,0 +1,578 @@
+table 'public labs'
+	lineageTag: faabc177-7c5f-43ff-84d1-aab7d2912e96
+
+	measure 'Fasting High Glucose Count' = ```
+			SUMX(
+			    'public labs',
+			    (IF('public labs'[first_tri_fasting_blood_glucose] > 95, 1, 0)) +
+			    (IF('public labs'[second_tri_fasting_blood_glucose] > 95, 1, 0)) +
+			    (IF('public labs'[third_tri_fasting_blood_glucose] > 95, 1, 0))
+			)
+			
+			```
+		formatString: 0
+		lineageTag: da0afba9-9bbd-4b61-8418-063b4afc5bde
+
+	measure 'Fasting Low Glucose Count' =
+			
+			SUMX(
+			    'public labs',
+			    (IF('public labs'[first_tri_fasting_blood_glucose] > 70, 1, 0)) +
+			    (IF('public labs'[second_tri_fasting_blood_glucose] > 70, 1, 0)) +
+			    (IF('public labs'[third_tri_fasting_blood_glucose] > 70, 1, 0))
+			)
+		formatString: 0
+		lineageTag: 38ee74f3-e13f-47fe-8699-1b57d4723a77
+
+	measure 'Fasting Normal Glucose Count' =
+			
+			SUMX(
+			    'public labs',
+			    (IF('public labs'[first_tri_fasting_blood_glucose] >= 70 && 'public labs'[first_tri_fasting_blood_glucose] <= 95, 1, 0)) +
+			    (IF('public labs'[second_tri_fasting_blood_glucose] >= 70 && 'public labs'[second_tri_fasting_blood_glucose] <= 95, 1, 0)) +
+			    (IF('public labs'[third_tri_fasting_blood_glucose] >= 70 && 'public labs'[third_tri_fasting_blood_glucose] <= 95, 1, 0))
+			)
+		formatString: 0
+		lineageTag: 413d4753-f974-4047-8f94-26047927c490
+
+	measure 'First hour High Glucose Count' =
+			
+			SUMX(
+			    'public labs',
+			    (IF('public labs'[1st_hour_ogtt75_1st_tri] > 180, 1, 0)) +
+			    (IF('public labs'[1st_hour_ogtt75_2tri] > 180, 1, 0)) +
+			    (IF('public labs'[1st_hour_ogtt75_3tri] > 180, 1, 0))
+			)
+		formatString: 0
+		lineageTag: eaae9945-137a-4ace-8e06-7ab88eccfd3e
+
+	measure 'First Hour Low Glucose Count' =
+			
+			SUMX(
+			    'public labs',
+			    (IF('public labs'[1st_hour_ogtt75_1st_tri] <90, 1, 0)) +
+			    (IF('public labs'[1st_hour_ogtt75_2tri] <55, 1, 0)) +
+			    (IF('public labs'[1st_hour_ogtt75_3tri]<60, 1, 0))
+			)
+		formatString: 0
+		lineageTag: 2df6dfbd-17f1-4b6f-956e-e3089690c05d
+
+	measure 'First Hour Normal Glucose Count' =
+			
+			SUMX(
+			    'public labs',
+			    (IF('public labs'[1st_hour_ogtt75_1st_tri] >=90&&'public labs'[1st_hour_ogtt75_1st_tri] <=148, 1, 0)) +
+			    (IF('public labs'[1st_hour_ogtt75_2tri] >=51&&'public labs'[1st_hour_ogtt75_2tri] <=148, 1, 0)) +
+			   (IF('public labs'[1st_hour_ogtt75_3tri] >=60&&'public labs'[1st_hour_ogtt75_3tri] <=175, 1, 0))
+			)
+		formatString: 0
+		lineageTag: 643e178f-b0dc-48fe-b147-591a7ad2498b
+
+	measure 'Second Hour Normal Glucose Count' =
+			
+			SUMX(
+			    'public labs',
+			    (IF('public labs'[2nd_hour_ogtt_1tri] >=105&&'public labs'[2nd_hour_ogtt_1tri] <=129, 1, 0)) +
+			    (IF('public labs'[2nd_hour_ogtt75_2tri] >=57&&'public labs'[2nd_hour_ogtt75_2tri] <=178, 1, 0)) +
+			   (IF('public labs'[2nd_hour_ogtt_3tri] >=65&&'public labs'[2nd_hour_ogtt_3tri] <=164, 1, 0))
+			)
+		formatString: 0
+		lineageTag: deda4c34-2cff-476d-ba9b-376fcc7746d1
+
+	measure 'Second Hour High Glucose Count' =
+			
+			SUMX(
+			    'public labs',
+			    (IF('public labs'[2nd_hour_ogtt_1tri] > 155, 1, 0)) +
+			    (IF('public labs'[2nd_hour_ogtt75_2tri] > 155, 1, 0)) +
+			    (IF('public labs'[2nd_hour_ogtt_3tri] > 155, 1, 0))
+			)
+		formatString: 0
+		lineageTag: bb391ee2-687e-4649-b478-9be2d6b526df
+
+	measure 'Second Hour Low Glucose Count' =
+			
+			SUMX(
+			    'public labs',
+			    (IF('public labs'[2nd_hour_ogtt_1tri] <90, 1, 0)) +
+			    (IF('public labs'[2nd_hour_ogtt75_2tri] <55, 1, 0)) +
+			    (IF('public labs'[2nd_hour_ogtt_3tri]<60, 1, 0))
+			)
+		formatString: 0
+		lineageTag: 2c484daa-55d5-4fd1-b346-f2a5fcd43a4d
+
+	measure 'High BP Count' =
+			
+			COUNTROWS(
+			    FILTER(
+			        'public labs',
+			        'public labs'[mean_systolic_blood_pressure] > 120 ||
+			        'public labs'[mean_diastolic_blood_pressure] > 80
+			    )
+			)
+		formatString: 0
+		lineageTag: a80d49c6-9810-4b78-abaf-334aa874d59e
+
+	measure 'Low BP Count' =
+			
+			COUNTROWS(
+			    FILTER(
+			        'public labs',
+			        'public labs'[mean_systolic_blood_pressure] < 80 ||
+			        'public labs'[mean_diastolic_blood_pressure] < 60
+			    )
+			)
+		formatString: 0
+		lineageTag: e8bdb60d-ed07-468c-b67e-2ec37509b909
+
+	measure 'Normal BP Count' =
+			
+			COUNTROWS(
+			    FILTER(
+			        'public labs',
+			        'public labs'[mean_systolic_blood_pressure] >= 90 &&
+			        'public labs'[mean_systolic_blood_pressure] <= 120 &&
+			        'public labs'[mean_diastolic_blood_pressure] >= 60 &&
+			        'public labs'[mean_diastolic_blood_pressure] <= 80
+			    )
+			)
+		formatString: 0
+		lineageTag: 09280fb5-e374-4f1c-9c33-af09cbcd7712
+
+	measure 'Low Hemoglobin Count' =
+			
+			SUMX(
+			    'public labs',
+			    (IF(NOT(ISBLANK('public labs'[firt_trimester_hemoglobin])) && 'public labs'[firt_trimester_hemoglobin] < 10.5, 1, 0)) +
+			    (IF(NOT(ISBLANK('public labs'[second_trimester_hemoglobin])) && 'public labs'[second_trimester_hemoglobin] < 10.5, 1, 0)) +
+			    (IF(NOT(ISBLANK('public labs'[third_trimester_hemoglobin])) && 'public labs'[third_trimester_hemoglobin] < 10.5, 1, 0))
+			)
+		formatString: 0
+		lineageTag: 955d2fd5-73ff-4cb9-974d-fbe1d6ec85fb
+
+	measure 'Normal Hemoglobin Count' =
+			
+			SUMX(
+			    'public labs',
+			    (IF(NOT(ISBLANK('public labs'[firt_trimester_hemoglobin])) && 'public labs'[firt_trimester_hemoglobin] >= 10.5 && 'public labs'[firt_trimester_hemoglobin] <= 14, 1, 0)) +
+			    (IF(NOT(ISBLANK('public labs'[second_trimester_hemoglobin])) && 'public labs'[second_trimester_hemoglobin] >= 10.5 && 'public labs'[second_trimester_hemoglobin] <= 14, 1, 0)) +
+			    (IF(NOT(ISBLANK('public labs'[third_trimester_hemoglobin])) && 'public labs'[third_trimester_hemoglobin] >= 10.5 && 'public labs'[third_trimester_hemoglobin] <= 14, 1, 0))
+			)
+		formatString: 0
+		lineageTag: 601f583b-05db-4b3c-aea7-087cef2c0eac
+
+	measure BP_Elevated_Count =
+			CALCULATE(COUNTROWS('public labs'),'public labs'[BPCategory]="Hypertensive Crisis" || 'public labs'[BPCategory]="High Blood Pressure (Stage 2)" ||
+			'public labs'[BPCategory]="High Blood Pressure (Stage 1)" || 'public labs'[BPCategory]="Elevated")
+		lineageTag: d5516171-dea5-4fb3-9077-1fbc4c2ac646
+
+	measure Glucose_Elevated_Count = CALCULATE(COUNTROWS('public labs'),'public labs'[GlucoseLevelsOverall]="Elevated")
+		formatString: 0
+		lineageTag: 2ab843c2-ef4e-4dcc-97ec-f5ca13ae870d
+
+	measure Hemoglobin_Low_Count = CALCULATE(COUNTROWS('public labs'),'public labs'[HemoglobonCatOverall]="Low")
+		lineageTag: 8b99035e-68c3-4b61-ac83-9dfaf9c16b37
+
+	column case_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ea9332e-92c7-4772-81ce-955a2e084809
+		summarizeBy: none
+		sourceColumn: case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_trimester_hematocrit
+		dataType: double
+		lineageTag: b7954a95-7f1b-4876-84ed-777a6e10f7c0
+		summarizeBy: sum
+		sourceColumn: first_trimester_hematocrit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column second_trimester_hematocrit
+		dataType: double
+		lineageTag: f9c0e484-7baa-40ca-b83c-b8c3b6ef96b0
+		summarizeBy: sum
+		sourceColumn: second_trimester_hematocrit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column third_trimester_hematocrit
+		dataType: double
+		lineageTag: 276c7179-3587-458d-b420-1f57c6866342
+		summarizeBy: sum
+		sourceColumn: third_trimester_hematocrit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column firt_trimester_hemoglobin
+		dataType: double
+		lineageTag: ea24d439-9464-418d-8cc0-210983ad3d12
+		summarizeBy: sum
+		sourceColumn: firt_trimester_hemoglobin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column second_trimester_hemoglobin
+		dataType: double
+		lineageTag: 0246d75c-c663-432e-90c5-dc1015ec934e
+		summarizeBy: sum
+		sourceColumn: second_trimester_hemoglobin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column third_trimester_hemoglobin
+		dataType: double
+		lineageTag: 13e80f7b-56d2-48a2-b191-76f48e453cc4
+		summarizeBy: sum
+		sourceColumn: third_trimester_hemoglobin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column first_tri_fasting_blood_glucose
+		dataType: int64
+		formatString: 0
+		lineageTag: 1146915f-31f6-4fb5-9c8d-f021b49732a8
+		summarizeBy: sum
+		sourceColumn: first_tri_fasting_blood_glucose
+
+		annotation SummarizationSetBy = Automatic
+
+	column second_tri_fasting_blood_glucose
+		dataType: double
+		lineageTag: 4b18ff9f-9567-4c62-aa76-c8e90f70ed3c
+		summarizeBy: sum
+		sourceColumn: second_tri_fasting_blood_glucose
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column third_tri_fasting_blood_glucose
+		dataType: double
+		lineageTag: acdbeb80-5f6f-4eb9-a0d6-7b883f39936d
+		summarizeBy: sum
+		sourceColumn: third_tri_fasting_blood_glucose
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 1st_hour_ogtt75_1st_tri
+		dataType: double
+		lineageTag: 97247ed5-d508-4d59-a670-bc795ff307a9
+		summarizeBy: sum
+		sourceColumn: 1st_hour_ogtt75_1st_tri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 1st_hour_ogtt75_2tri
+		dataType: double
+		lineageTag: faec8a70-d333-4db5-aaed-16befbaaa878
+		summarizeBy: sum
+		sourceColumn: 1st_hour_ogtt75_2tri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 1st_hour_ogtt75_3tri
+		dataType: double
+		lineageTag: 180754eb-2201-4e40-9487-29edc099b32a
+		summarizeBy: sum
+		sourceColumn: 1st_hour_ogtt75_3tri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2nd_hour_ogtt_1tri
+		dataType: double
+		lineageTag: 7388404f-beea-4444-87bc-84936ce6cb86
+		summarizeBy: sum
+		sourceColumn: 2nd_hour_ogtt_1tri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2nd_hour_ogtt75_2tri
+		dataType: double
+		lineageTag: 30db1261-e6a9-49a3-ac3b-d25988d510bf
+		summarizeBy: sum
+		sourceColumn: 2nd_hour_ogtt75_2tri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2nd_hour_ogtt_3tri
+		dataType: double
+		lineageTag: d291b09d-87ef-4094-abe6-ecef77f772f1
+		summarizeBy: sum
+		sourceColumn: 2nd_hour_ogtt_3tri
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column right_systolic_blood_pressure
+		dataType: double
+		lineageTag: edce08a8-50a5-49c2-9417-caf0cecc22d8
+		summarizeBy: sum
+		sourceColumn: right_systolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column right_diastolic_blood_pressure
+		dataType: double
+		lineageTag: e70afc84-0b02-426f-a3de-a9c20a9c1694
+		summarizeBy: sum
+		sourceColumn: right_diastolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column left_systolic_blood_pressure
+		dataType: double
+		lineageTag: a5f73647-c523-497b-ab03-ec98add6019b
+		summarizeBy: sum
+		sourceColumn: left_systolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column left_diastolic_blood_pressure
+		dataType: double
+		lineageTag: cf776d03-828c-4fd9-a2f4-ddca6250a546
+		summarizeBy: sum
+		sourceColumn: left_diastolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mean_systolic_blood_pressure
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e82fabe-d272-47ba-9566-857feb7db1cd
+		summarizeBy: sum
+		sourceColumn: mean_systolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+	column mean_diastolic_blood_pressure
+		dataType: int64
+		formatString: 0
+		lineageTag: f2da70c1-3357-4096-9ad4-fac05c1276c1
+		summarizeBy: sum
+		sourceColumn: mean_diastolic_blood_pressure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dysglycemia_Category = ```
+			
+			IF(
+			    OR('public labs'[1st_hour_ogtt75_2tri] >= 180, 'public labs'[2nd_hour_ogtt75_2tri] >= 153),
+			    "Dysglycemia", 
+			    "Normal"
+			)
+			
+			```
+		lineageTag: c4c2d50d-613e-4012-a0cc-0bf813501fef
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Preeclampsia_Category = ```
+			
+			IF(RELATED('public hospitalization_labor'[preeclampsia_record_pregnancy]) = 1, "Preeclampsia", "No Preeclampsia")
+			
+			```
+		lineageTag: fa1681e4-6132-4390-8ac4-2a7bd2f5afd1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BP Classification' = ```
+			SWITCH(
+			     TRUE(),
+			     ISBLANK('public labs'[mean_diastolic_blood_pressure]) || ISBLANK('public labs'[mean_systolic_blood_pressure]), "",
+			     'public labs'[mean_systolic_blood_pressure]<120 && 'public labs'[mean_diastolic_blood_pressure]<80, "Normal BP",
+			     'public labs'[mean_systolic_blood_pressure]>=120 && 'public labs'[mean_systolic_blood_pressure]<130 && 'public labs'[mean_diastolic_blood_pressure]<80, "Elevated BP",
+			     ('public labs'[mean_systolic_blood_pressure]>=130 && 'public labs'[mean_systolic_blood_pressure]<140) || ('public labs'[mean_diastolic_blood_pressure] >= 80 && 'public labs'[mean_diastolic_blood_pressure] <90), "Hypertension Stage 1",
+			     'public labs'[mean_systolic_blood_pressure]>180 || 'public labs'[mean_diastolic_blood_pressure] > 120, "Hypertensive Crisis",
+			     'public labs'[mean_systolic_blood_pressure]>=140 || 'public labs'[mean_diastolic_blood_pressure] >=90, "Hypertension Stage 2")
+			
+			
+			```
+		lineageTag: 289bd656-5f29-43b1-96a0-560b93274342
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column MAP = if(ISBLANK('public labs'[mean_diastolic_blood_pressure]) || ISBLANK('public labs'[mean_systolic_blood_pressure]),BLANK(),ROUND('public labs'[mean_diastolic_blood_pressure]+('public labs'[mean_systolic_blood_pressure]-'public labs'[mean_diastolic_blood_pressure])/3,2))
+		lineageTag: 7c13e0b3-621d-4f60-882c-f8f785406457
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BP_Category = ```
+			
+			IF(
+			    ISBLANK('public labs'[mean_diastolic_blood_pressure]) || ISBLANK('public labs'[mean_systolic_blood_pressure]),
+			    "NR",
+			    IF(
+			        'public labs'[mean_systolic_blood_pressure] < 120 && 'public labs'[mean_diastolic_blood_pressure] < 80, 
+			        "Normal",
+			        IF(
+			            ('public labs'[mean_systolic_blood_pressure] >= 120 && 'public labs'[mean_systolic_blood_pressure] <= 129) && 'public labs'[mean_diastolic_blood_pressure] < 80, 
+			            "Elevated",
+			            IF(
+			                ('public labs'[mean_systolic_blood_pressure] >= 130 && 'public labs'[mean_systolic_blood_pressure] <= 139) || ('public labs'[mean_diastolic_blood_pressure] >= 80 && 'public labs'[mean_diastolic_blood_pressure] < 90),
+			                "Hypertension Stage 1",
+			                "Hypertension Stage 2"
+			            )
+			        )
+			    )
+			)
+			
+			```
+		lineageTag: 6a1eb49f-6ac1-4b49-ab80-350e39f3c04a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column GlucoseLevelsOverall = ```
+			IF((ISBLANK('public labs'[First_tri_ElevatedGlucoseCat]) &&
+			ISBLANK('public labs'[Sec_tri_ElevatedGlucoseCat]) && ISBLANK('public labs'[Third_tri_ElevatedGlucoseCat])),BLANK(),
+			IF('public labs'[First_tri_ElevatedGlucoseCat]="Elevated" ||
+			'public labs'[Sec_tri_ElevatedGlucoseCat]="Elevated" || 
+			'public labs'[Third_tri_ElevatedGlucoseCat]="Elevated", "Elevated", "Normal"))
+			```
+		lineageTag: dfdfaa6f-a437-401c-9b15-b7f05251658a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column First_tri_ElevatedGlucoseCat =
+			IF((ISBLANK('public labs'[first_tri_fasting_blood_glucose]) &&
+			ISBLANK('public labs'[1st_hour_ogtt75_1st_tri]) && ISBLANK('public labs'[2nd_hour_ogtt_1tri])),BLANK(),
+			IF('public labs'[first_tri_fasting_blood_glucose]>=92 ||
+			    'public labs'[1st_hour_ogtt75_1st_tri]>=180 ||
+			    'public labs'[2nd_hour_ogtt_1tri]>=153, "Elevated", "Normal"))
+		lineageTag: 639f6fb7-b07a-4dd2-9d32-4c3c498ecb99
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sec_tri_ElevatedGlucoseCat =
+			IF((ISBLANK('public labs'[second_tri_fasting_blood_glucose]) &&
+			ISBLANK('public labs'[1st_hour_ogtt75_2tri]) && ISBLANK('public labs'[2nd_hour_ogtt75_2tri])),BLANK(),
+			IF('public labs'[second_tri_fasting_blood_glucose]>=92 ||
+			    'public labs'[1st_hour_ogtt75_2tri]>=180 ||
+			    'public labs'[2nd_hour_ogtt75_2tri]>=153, "Elevated", "Normal"))
+		lineageTag: 6d590c9b-ec20-4d5f-94dc-6c167bb260b6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Third_tri_ElevatedGlucoseCat =
+			IF((ISBLANK('public labs'[third_tri_fasting_blood_glucose]) &&
+			ISBLANK('public labs'[1st_hour_ogtt75_3tri]) && ISBLANK('public labs'[2nd_hour_ogtt_3tri])),BLANK(),
+			IF('public labs'[third_tri_fasting_blood_glucose]>=92 ||
+			    'public labs'[1st_hour_ogtt75_3tri]>=180 ||
+			    'public labs'[2nd_hour_ogtt_3tri]>=153, "Elevated", "Normal"))
+		lineageTag: 133c6c5d-f7a7-498e-ae8a-aded42e854cf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column BPCategory = ```
+			IF(ISBLANK('public labs'[mean_systolic_blood_pressure]) || ISBLANK('public labs'[mean_diastolic_blood_pressure]), BLANK(),
+			IF('public labs'[mean_systolic_blood_pressure]>=180 || 'public labs'[mean_diastolic_blood_pressure]>=120, "Hypertensive Crisis", 
+			IF('public labs'[mean_systolic_blood_pressure]>=140 || 'public labs'[mean_diastolic_blood_pressure]>=90, "High Blood Pressure (Stage 2)",
+			IF(('public labs'[mean_systolic_blood_pressure]>=130 && 'public labs'[mean_systolic_blood_pressure]<=139) || ('public labs'[mean_diastolic_blood_pressure]>=80 && 'public labs'[mean_diastolic_blood_pressure]<=89), "High Blood Pressure (Stage 1)",
+			IF(('public labs'[mean_systolic_blood_pressure]>=120 && 'public labs'[mean_systolic_blood_pressure]<=129) && ('public labs'[mean_diastolic_blood_pressure]<=80), "Elevated",
+			IF('public labs'[mean_systolic_blood_pressure]<120 && 'public labs'[mean_diastolic_blood_pressure]<80,"Normal", BLANK()))))))
+			```
+		lineageTag: 61266a53-b1b6-44b9-ab70-088b98cc2d46
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column HemoglobonCatOverall = ```
+			IF(ISBLANK('public labs'[First_tri_HemoglobinCategory]) &&
+			ISBLANK('public labs'[Second_tri_HemoglobinCategory]) && 
+			ISBLANK('public labs'[Third_tri_HemoglobinCategory]),BLANK(),
+			IF('public labs'[First_tri_HemoglobinCategory]="Low" ||
+			'public labs'[Second_tri_HemoglobinCategory]="Low" ||
+			'public labs'[Third_tri_HemoglobinCategory]="Low", "Low","Normal"))
+			```
+		lineageTag: f4997947-54d7-4f73-8e75-3dd600e5a6c0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column First_tri_HemoglobinCategory = IF(ISBLANK('public labs'[firt_trimester_hemoglobin]),BLANK(),IF('public labs'[firt_trimester_hemoglobin]>=11,"Normal","Low"))
+		lineageTag: 8525884c-e778-4371-851d-543be547150d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Second_tri_HemoglobinCategory = IF(ISBLANK('public labs'[second_trimester_hemoglobin]),BLANK(),IF('public labs'[second_trimester_hemoglobin]>=10.5,"Normal","Low"))
+		lineageTag: a7ce87d3-a4e4-470d-b3ab-1d16369f7dfe
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Third_tri_HemoglobinCategory = IF(ISBLANK('public labs'[third_trimester_hemoglobin]),BLANK(),IF('public labs'[third_trimester_hemoglobin]>=11,"Normal","Low"))
+		lineageTag: 87d31d27-f9a8-48bc-b2e5-8503acecca69
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column BPCategory_labs =
+			IF(ISBLANK('public labs'[mean_systolic_blood_pressure]) || ISBLANK('public labs'[mean_diastolic_blood_pressure]), BLANK(),
+			IF('public labs'[mean_systolic_blood_pressure]>=180 || 'public labs'[mean_diastolic_blood_pressure]>=120, "Hypertensive Crisis",
+			IF('public labs'[mean_systolic_blood_pressure]>=140 || 'public labs'[mean_diastolic_blood_pressure]>=90, "High Blood Pressure (Stage 2)",
+			IF(('public labs'[mean_systolic_blood_pressure]>=130 && 'public labs'[mean_systolic_blood_pressure]<=139) || ('public labs'[mean_diastolic_blood_pressure]>=80 && 'public labs'[mean_diastolic_blood_pressure]<=89), "High Blood Pressure (Stage 1)",
+			IF(('public labs'[mean_systolic_blood_pressure]>=120 && 'public labs'[mean_systolic_blood_pressure]<=129) && ('public labs'[mean_diastolic_blood_pressure]<=80), "Elevated",
+			IF('public labs'[mean_systolic_blood_pressure]<120 && 'public labs'[mean_diastolic_blood_pressure]<80,"Normal", BLANK()))))))
+		lineageTag: 879a361e-b7a9-4f8a-a42e-45ab7ae4a476
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'public labs' = m
+		mode: import
+		source =
+				let
+				    Source = PostgreSQL.Database("localhost:5432", "Project_MH"),
+				    public_labs = Source{[Schema="public",Item="labs"]}[Data]
+				in
+				    public_labs
+
+	annotation PBI_ResultType = Table
+
