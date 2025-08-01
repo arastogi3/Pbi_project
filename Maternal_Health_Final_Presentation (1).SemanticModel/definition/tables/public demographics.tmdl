@@ -5,16 +5,16 @@ table 'public demographics'
 		formatString: 0
 		lineageTag: 694974b2-425a-4c09-8fab-05c2fffe179e
 
-	measure Average_Age = AVERAGE('public demographics'[age_years_old])
+	measure Average_Age = AVERAGE('public demographics'[year_old])
 		lineageTag: a886a239-a438-44da-b8b5-7db5713a26f1
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure Max_Age = MAX('public demographics'[age_years_old])
+	measure Max_Age = MAX('public demographics'[year_old])
 		formatString: 0
 		lineageTag: 1972dd85-2728-4240-abb0-5a248b244fe1
 
-	measure Min_Age = MIN('public demographics'[age_years_old])
+	measure Min_Age = MIN('public demographics'[year_old])
 		formatString: 0
 		lineageTag: 0115405a-0cc7-477a-8306-2983698ddcd9
 
@@ -31,12 +31,12 @@ table 'public demographics'
 
 		annotation SummarizationSetBy = Automatic
 
-	column age_years_old
+	column year_old
 		dataType: int64
 		formatString: 0
 		lineageTag: 8e34e2bc-cda2-492a-8d4b-b509a6884f3e
 		summarizeBy: sum
-		sourceColumn: age_years_old
+		sourceColumn: year_old
 
 		annotation SummarizationSetBy = Automatic
 
@@ -52,10 +52,10 @@ table 'public demographics'
 			
 			SWITCH(
 			    TRUE(),
-			    'public demographics'[age_years_old] >= 15 && 'public demographics'[age_years_old] <= 17, "15-17",
-			    'public demographics'[age_years_old] >= 18 && 'public demographics'[age_years_old] <= 25, "18-25",
-			    'public demographics'[age_years_old] >= 26 && 'public demographics'[age_years_old] <= 35, "26-35",
-			    'public demographics'[age_years_old] >= 36 && 'public demographics'[age_years_old] <= 45, "36-45",
+			    'public demographics'[year_old] >= 15 && 'public demographics'[year_old] <= 17, "15-17",
+			    'public demographics'[year_old] >= 18 && 'public demographics'[year_old] <= 25, "18-25",
+			    'public demographics'[year_old] >= 26 && 'public demographics'[year_old] <= 35, "26-35",
+			    'public demographics'[year_old] >= 36 && 'public demographics'[year_old] <= 45, "36-45",
 			   
 			    "Unknown"
 			)
@@ -70,10 +70,10 @@ table 'public demographics'
 			
 			SWITCH (
 			    TRUE (),
-			    'public demographics'[age_years_old] < 20, "Under 20",
-			    'public demographics'[age_years_old] >= 20 && 'public demographics'[age_years_old] < 30, "20-29",
-			    'public demographics'[age_years_old] >= 30 && 'public demographics'[age_years_old] < 40, "30-39",
-			    'public demographics'[age_years_old] >= 40, "40 and above"
+			    'public demographics'[year_old] < 20, "Under 20",
+			    'public demographics'[year_old] >= 20 && 'public demographics'[year_old] < 30, "20-29",
+			    'public demographics'[year_old] >= 30 && 'public demographics'[year_old] < 40, "30-39",
+			    'public demographics'[year_old] >= 40, "40 and above"
 			)
 		lineageTag: 12ac045f-f38c-48a6-b566-2792bfe307b4
 		summarizeBy: none
