@@ -23,7 +23,7 @@ table 'public demographics'
 		lineageTag: 8e229760-b136-4b99-a137-2c57434e4df0
 
 	column case_id
-		dataType: int64
+		dataType: string
 		formatString: 0
 		lineageTag: c64ce869-a470-436a-a3c1-d5aff03a637e
 		summarizeBy: none
