@@ -2,7 +2,7 @@ table 'public bmi_metrics'
 	lineageTag: e944c59f-9263-4efe-b696-f1f7faa0d9de
 
 	column case_id
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: 936d0333-714b-40bd-acfa-368a4f6c8e89
 		summarizeBy: none
