@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "bd434eb672cc9e0b2477",
+  "position": {
+    "x": 50.577507598784194,
+    "y": 381.27659574468089,
+    "z": 0,
+    "height": 91.428571428571431,
+    "width": 480.48632218844989
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "As BMI increases, the maximum skinfold also tends to increase, indicating a positive correlation. Macronutrient types (Carbohydrates, Fiber & Vitamins, and Protein) do not show a distinct pattern in influencing this trend.",
+                    "textStyle": {
+                      "fontFamily": "Arial",
+                      "fontSize": "13.3333px",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

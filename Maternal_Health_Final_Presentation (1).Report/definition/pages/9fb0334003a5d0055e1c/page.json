@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "9fb0334003a5d0055e1c",
+  "displayName": "Insights",
+  "displayOption": "FitToWidth",
+  "height": 1700,
+  "width": 1280
+}
